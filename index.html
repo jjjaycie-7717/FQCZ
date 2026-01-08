@@ -10,11 +10,53 @@
     <style>
         body { font-family: 'Inter', 'Noto Sans SC', sans-serif; -webkit-font-smoothing: antialiased; background-color: #fafafa; color: #1e293b; scroll-behavior: smooth; }
         
-        /* 全局高级背景：弥散光晕 */
+        /* 全局高级背景：弥散光晕 - 优化版 */
         .site-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.03) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.03) 0%, transparent 40%);
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -50;
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            overflow: hidden;
+        }
+
+        /* 背景装饰元素 */
+        .bg-decoration {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -49; pointer-events: none;
+        }
+        
+        .bg-grid {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+        }
+
+        .floating-blob {
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6;
+            animation: float-blob 20s infinite alternate ease-in-out;
+        }
+        .blob-1 { width: 400px; height: 400px; background: rgba(139, 92, 246, 0.15); top: -10%; left: -10%; animation-delay: 0s; }
+        .blob-2 { width: 500px; height: 500px; background: rgba(59, 130, 246, 0.1); bottom: -10%; right: -10%; animation-delay: -5s; }
+        .blob-3 { width: 300px; height: 300px; background: rgba(244, 63, 94, 0.08); top: 40%; left: 40%; animation-delay: -10s; }
+
+        @keyframes float-blob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        .floating-icon {
+            position: absolute; color: rgba(139, 92, 246, 0.1); font-size: 24px;
+            animation: float-icon 10s infinite ease-in-out;
+        }
+        @keyframes float-icon {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
         }
 
         /* 统一卡片样式 */
@@ -28,7 +70,7 @@
         .glass-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.1); border-color: rgba(124, 58, 237, 0.2); }
 
         /* 标题层级 */
-        .h-section { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800; letter-spacing: -0.02em; }
+        .h-section { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; }
         .text-violet-gradient { background: linear-gradient(135deg, #1e293b 20%, #7c3aed 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         /* 按钮动效 */
@@ -47,6 +89,17 @@
 </head>
 <body class="selection:bg-violet-100">
     <div class="site-bg"></div>
+    <div class="bg-decoration">
+        <div class="bg-grid"></div>
+        <div class="floating-blob blob-1"></div>
+        <div class="floating-blob blob-2"></div>
+        <div class="floating-blob blob-3"></div>
+        <!-- 装饰图标 -->
+        <i class="fa-solid fa-play floating-icon" style="top: 15%; left: 10%; font-size: 40px; animation-delay: 0s;"></i>
+        <i class="fa-solid fa-circle-notch floating-icon" style="top: 25%; right: 15%; font-size: 30px; animation-delay: 2s;"></i>
+        <i class="fa-solid fa-square floating-icon" style="bottom: 30%; left: 5%; font-size: 50px; transform: rotate(45deg); animation-delay: 4s;"></i>
+        <i class="fa-solid fa-shapes floating-icon" style="bottom: 15%; right: 10%; font-size: 35px; animation-delay: 1s;"></i>
+    </div>
 
     <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-gray-100 h-16 flex items-center">
         <div class="max-w-7xl mx-auto w-full px-6 flex justify-between items-center">
@@ -57,111 +110,239 @@
                 <span class="text-xl font-black tracking-tight text-slate-900 italic">蜂桥创作</span>
             </div>
             <div class="hidden md:flex gap-10 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-                <a href="#workflow" class="hover:text-violet-600 transition">核心功能</a>
-                <a href="#roi" class="hover:text-violet-600 transition">产品价值</a>
-                <a href="#audience" class="hover:text-violet-600 transition">用户群体</a>
-                <a href="#strategy" class="hover:text-violet-600 transition">战略意义</a>
+                <a href="#workflow" class="hover:text-violet-600 transition" style="font-size: 13px;">核心功能</a>
+                <a href="#roi" class="hover:text-violet-600 transition" style="font-size: 13px;">产品价值</a>
+                <a href="#audience" class="hover:text-violet-600 transition" style="font-size: 13px;">用户群体</a>
+                <a href="#strategy" class="hover:text-violet-600 transition" style="font-size: 13px;">战略意义</a>
             </div>
-            <button class="bg-slate-900 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-violet-600 transition">立即体验</button>
+            <button class="bg-slate-900 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-violet-600 transition" style="font-size: 13px;">立即体验</button>
         </div>
     </nav>
 
-    <section class="relative pt-32 pb-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-            <div class="text-left">
+    <section class="relative pt-32 pb-20 overflow-hidden" style="padding-bottom: 100px; padding-top: 130px;">
+        <!-- 背景优化 -->
+        <div class="absolute inset-0 -z-20 h-full w-full bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+        <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_800px_at_100%_200px,#7c3aed1a,transparent)]"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <!-- 左侧内容 -->
+            <div class="text-left relative z-10">
                 <div class="inline-flex items-center gap-2 px-3 py-1 mb-8 text-[10px] font-black uppercase tracking-[0.3em] text-violet-600 bg-violet-50 rounded-full border border-violet-100">
                     <i class="fa-solid fa-bolt"></i> 2026 AI Infrastructure
                 </div>
-                <h1 class="text-5xl md:text-7xl font-black text-slate-950 leading-[1.1] mb-8 tracking-tighter">
-                    AI 短视频创作<br><span class="text-violet-gradient italic">规模化短视频生产</span>
+                <h1 class="text-5xl md:text-7xl font-black text-slate-900 leading-[1.1] mb-6 tracking-tighter" style="font-size: 65px;">
+                    AI 短视频创作<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 italic block text-2xl md:text-4xl mt-4 leading-normal">人人都能 随时随地 快速制作 专业短视频</span>
                 </h1>
-                <p class="text-lg text-slate-500 max-w-lg mb-12 leading-relaxed font-light">
-                    蜂桥创作是一款手机上的 AI 短视频制作工具，选择模板、导入稿件与素材，30 秒预览、分钟成片，让不会剪辑的人也能稳定产出专业短视频。
+                <p class="text-lg text-slate-500 max-w-[540px] mb-10 leading-relaxed font-light">
+                    蜂桥创作是一款移动端 AI 短视频制作工具，只需选择模板、导入稿件与素材，就能实现 30 秒预览效果，分钟级生成成片，让不会剪辑的用户也能轻松产出高质量专业短视频。
                 </p>
-                <div class="flex flex-wrap gap-4">
-                    <button class="btn-premium text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-xl">立即体验：从文案到视频</button>
+                <div class="flex flex-wrap gap-6 items-center">
+                    <button class="btn-premium text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl shadow-violet-200" style="width: 160px;">立即体验</button>
+                    <div class="flex items-center gap-2 text-sm text-slate-500 font-medium">
+                        <i class="fa-regular fa-circle-check text-violet-500"></i> 免费使用
+                        <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                        <i class="fa-regular fa-circle-check text-violet-500"></i> 无需下载
+                    </div>
+                </div>
+                <!-- 底部数据 -->
+                <div class="mt-12 pt-8 border-t border-slate-100 grid grid-cols-3 gap-8">
+                    <div>
+                        <div class="text-2xl font-black text-slate-900">30s</div>
+                        <div class="text-xs text-slate-400 font-medium uppercase tracking-wider">极速预览</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-slate-900">100+</div>
+                        <div class="text-xs text-slate-400 font-medium uppercase tracking-wider">专业模板</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-slate-900">4K</div>
+                        <div class="text-xs text-slate-400 font-medium uppercase tracking-wider">超清画质</div>
+                    </div>
                 </div>
             </div>
-            <div class="relative lg:ml-10">
-                <div class="absolute -inset-10 bg-violet-400 blur-[120px] opacity-10 -z-10"></div>
-                <div class="glass-card p-3 rounded-[3rem] shadow-2xl overflow-hidden border border-white">
-                    <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=800&q=80" alt="UI Dashboard" class="rounded-[2.2rem] w-full">
+            
+            <!-- 右侧手机+悬浮卡片 -->
+            <div class="relative lg:h-[700px] flex items-center justify-center">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-violet-200/30 rounded-full blur-[100px] -z-10"></div>
+                
+                <div class="glass-card p-2 rounded-[3.5rem] shadow-2xl overflow-hidden border-4 border-white w-[340px] relative z-10 bg-slate-900">
+                     <video src="image/创作过程最终视频.mp4" class="rounded-[3rem] w-full h-[680px] object-cover opacity-90" autoplay loop muted playsinline></video>
+                </div>
+
+                <!-- 悬浮元素 -->
+                <div class="absolute top-[15%] left-0 lg:-left-12 glass-card p-4 rounded-2xl flex items-center gap-3 animate-bounce shadow-lg bg-white/90 z-20" style="animation-duration: 3s;">
+                    <div class="w-10 h-10 bg-rose-100 rounded-full flex items-center justify-center text-rose-500">
+                        <i class="fa-solid fa-microphone-lines"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-slate-900">AI 智能配音</div>
+                        <div class="text-[10px] text-slate-400">一键生成口播</div>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-[20%] right-0 lg:-right-8 glass-card p-4 rounded-2xl flex items-center gap-3 animate-bounce shadow-lg bg-white/90 z-20" style="animation-duration: 4s; animation-delay: 1s;">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-500">
+                        <i class="fa-solid fa-closed-captioning"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-bold text-slate-900">自动字幕</div>
+                        <div class="text-[10px] text-slate-400">精准语音转写</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-slate-50 border-y border-slate-100">
+    <section class="py-20 bg-white/40 backdrop-blur-sm border-y border-slate-100/50" style="padding-top: 70px; padding-bottom: 70px;">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                <div>
-                    <h2 class="h-section text-slate-900">打破视频生产瓶颈，释放内容创作潜力</h2>
-                    <p class="text-slate-400 mt-2 text-sm font-medium">3 个常见场景：先识别卡点，再用蜂桥一键打通。</p>
-                </div>
-                <span class="text-[10px] font-black uppercase text-slate-300 tracking-widest">Pain Points & Solutions</span>
+            <div class="text-center mb-16">
+                    <h2 class="h-section text-slate-900">你的生产力，正在拖慢创意吗？</h2>
+                    <p class="text-slate-400 mt-2 text-sm font-medium">打破视频生产瓶颈，释放内容创作潜力</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass-card p-10 rounded-[2.5rem] bg-white/60 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-red-400/80 via-violet-500/60 to-transparent"></div>
-                    <div class="w-10 h-10 bg-red-50 text-red-400 rounded-xl flex items-center justify-center mb-8">
+
+            <div class="grid md:grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 1. 人员限制 -->
+                <div class="glass-card group rounded-[2.5rem] bg-white overflow-hidden hover:shadow-2xl transition-all duration-500">
+                    <div class="grid sm:grid-cols-2 h-full">
+                        <div class="p-8 bg-slate-50/50 border-b sm:border-b-0 sm:border-r border-slate-100 flex flex-col">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center text-red-400 text-xl">
+                        <i class="fa-solid fa-user-lock"></i>
+                    </div>
+                                <span class="text-[10px] font-black uppercase tracking-widest text-red-300">痛点</span>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xl font-black text-slate-900 mb-1">人员限制</h4>
+                                <p class="text-sm font-bold text-red-500/80">有素材没视频，进度卡在“剪辑”</p>
+                            </div>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">稿件与素材虽然准备就绪，但视频制作高度依赖专业剪辑人员，往往因人力不足或排期拥堵导致创作停滞。</p>
+                        </div>
+                        <div class="p-8 bg-gradient-to-br from-violet-50 to-white flex flex-col relative overflow-hidden">
+                            <!-- 装饰背景 -->
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-violet-100 rounded-bl-[100%] -mr-8 -mt-8 opacity-50 z-0"></div>
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="w-12 h-12 bg-violet-600 rounded-2xl shadow-lg shadow-violet-200 flex items-center justify-center text-white text-xl">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                    </div>
+                                    <span class="text-[10px] font-black uppercase tracking-widest text-violet-600 bg-white px-2 py-1 rounded-lg shadow-sm">蜂桥方案</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-violet-900 mb-3">自主创作</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed font-light">降低视频创作门槛，让文案与运营人员也能通过 AI 工具独立完成视频制作，不再受限于专业剪辑排期。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. 时效滞后 -->
+                <div class="glass-card group rounded-[2.5rem] bg-white overflow-hidden hover:shadow-2xl transition-all duration-500">
+                    <div class="grid sm:grid-cols-2 h-full">
+                        <div class="p-8 bg-slate-50/50 border-b sm:border-b-0 sm:border-r border-slate-100 flex flex-col">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center text-red-400 text-xl">
                         <i class="fa-solid fa-hourglass-start"></i>
                     </div>
-                    <h4 class="text-lg font-bold mb-4">场景 A：新闻时效性强，传统剪辑滞后</h4>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase bg-slate-50 text-slate-500 border border-slate-100 mb-4">痛点</div>
-                    <p class="text-xs text-slate-500 leading-relaxed font-light">传统流程制作周期长，沟通修改耗时，往往导致内容发布时已错失最佳传播窗口。</p>
-                    <div class="mt-8 p-5 rounded-2xl bg-gradient-to-br from-violet-50 to-white border border-violet-100">
-                        <div class="flex items-center justify-between mb-2">
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase bg-violet-600 text-white">解决方案</div>
-                            <i class="fa-solid fa-bolt text-violet-600"></i>
+                                <span class="text-[10px] font-black uppercase tracking-widest text-red-300">痛点</span>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xl font-black text-slate-900 mb-1">时效滞后</h4>
+                                <p class="text-sm font-bold text-red-500/80">热点转瞬即逝，产出内容错失黄金传播时机</p>
+                            </div>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">突发热点需要即时响应，但传统视频制作流程冗长、沟通反复效率低，导致内容发出时已错失最佳传播时机。</p>
                         </div>
-                        <p class="text-sm font-black text-slate-900 leading-snug">快速响应</p>
-                        <p class="text-[11px] text-slate-500 mt-2">手机端随时拍摄剪辑，快速完成制作，确保热点资讯第一时间发布。</p>
+                        <div class="p-8 bg-gradient-to-br from-violet-50 to-white flex flex-col relative overflow-hidden">
+                            <!-- 装饰背景 -->
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-violet-100 rounded-bl-[100%] -mr-8 -mt-8 opacity-50 z-0"></div>
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="w-12 h-12 bg-violet-600 rounded-2xl shadow-lg shadow-violet-200 flex items-center justify-center text-white text-xl">
+                                        <i class="fa-solid fa-bolt"></i>
+                                    </div>
+                                    <span class="text-[10px] font-black uppercase tracking-widest text-violet-600 bg-white px-2 py-1 rounded-lg shadow-sm">蜂桥方案</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-violet-900 mb-3">敏捷交付</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed font-light">简化制作流程，支持手机端分钟级快速成片，确保资讯内容在第一时间发布。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="glass-card p-10 rounded-[2.5rem] bg-white/60 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-red-400/80 via-violet-500/60 to-transparent"></div>
-                    <div class="w-10 h-10 bg-red-50 text-red-400 rounded-xl flex items-center justify-center mb-8">
-                        <i class="fa-solid fa-boxes-stacked"></i>
+
+                <!-- 3. 产能不足 -->
+                <div class="glass-card group rounded-[2.5rem] bg-white overflow-hidden hover:shadow-2xl transition-all duration-500">
+                    <div class="grid sm:grid-cols-2 h-full">
+                        <div class="p-8 bg-slate-50/50 border-b sm:border-b-0 sm:border-r border-slate-100 flex flex-col">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center text-red-400 text-xl">
+                        <i class="fa-solid fa-battery-quarter"></i>
                     </div>
-                    <h4 class="text-lg font-bold mb-4">场景 B：多账号运营，人力成本高</h4>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase bg-slate-50 text-slate-500 border border-slate-100 mb-4">痛点</div>
-                    <p class="text-xs text-slate-500 leading-relaxed font-light">追求高频更新往往依赖增加运营人力投入，导致运营成本高且难以标准化。</p>
-                    <div class="mt-8 p-5 rounded-2xl bg-gradient-to-br from-violet-50 to-white border border-violet-100">
-                        <div class="flex items-center justify-between mb-2">
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase bg-violet-600 text-white">解决方案</div>
-                            <i class="fa-solid fa-layer-group text-violet-600"></i>
+                                <span class="text-[10px] font-black uppercase tracking-widest text-red-300">痛点</span>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xl font-black text-slate-900 mb-1">产能不足</h4>
+                                <p class="text-sm font-bold text-red-500/80">多渠道高频创作，无法规模化复制</p>
+                            </div>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">面对多账号矩阵与多场景覆盖的视频产出需求，单纯依靠增加人手成本高，且难以实现产能的规模化增长。</p>
                         </div>
-                        <p class="text-sm font-black text-slate-900 leading-snug">批量复制</p>
-                        <p class="text-[11px] text-slate-500 mt-2">将优质作品沉淀为标准模板，实现低成本、高质量的内容规模化复制。</p>
+                        <div class="p-8 bg-gradient-to-br from-violet-50 to-white flex flex-col relative overflow-hidden">
+                            <!-- 装饰背景 -->
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-violet-100 rounded-bl-[100%] -mr-8 -mt-8 opacity-50 z-0"></div>
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="w-12 h-12 bg-violet-600 rounded-2xl shadow-lg shadow-violet-200 flex items-center justify-center text-white text-xl">
+                                        <i class="fa-solid fa-layer-group"></i>
+                                    </div>
+                                    <span class="text-[10px] font-black uppercase tracking-widest text-violet-600 bg-white px-2 py-1 rounded-lg shadow-sm">蜂桥方案</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-violet-900 mb-3">模版创作</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed font-light">通过复用同款模版与批量生产创作视频的功能，打破人力产能天花板，实现低成本的高频内容供给。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="glass-card p-10 rounded-[2.5rem] bg-white/60 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-red-400/80 via-violet-500/60 to-transparent"></div>
-                    <div class="w-10 h-10 bg-red-50 text-red-400 rounded-xl flex items-center justify-center mb-8">
-                        <i class="fa-solid fa-shield-halved"></i>
+
+                <!-- 4. 质量波动 -->
+                <div class="glass-card group rounded-[2.5rem] bg-white overflow-hidden hover:shadow-2xl transition-all duration-500">
+                    <div class="grid sm:grid-cols-2 h-full">
+                        <div class="p-8 bg-slate-50/50 border-b sm:border-b-0 sm:border-r border-slate-100 flex flex-col">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center text-red-400 text-xl">
+                        <i class="fa-solid fa-wave-square"></i>
                     </div>
-                    <h4 class="text-lg font-bold mb-4">场景 C：多人协作，品牌形象难以统一</h4>
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase bg-slate-50 text-slate-500 border border-slate-100 mb-4">痛点</div>
-                    <p class="text-xs text-slate-500 leading-relaxed font-light">团队成员剪辑水平参差不齐，Logo、字体、风格缺乏规范，影响品牌专业度。</p>
-                    <div class="mt-8 p-5 rounded-2xl bg-gradient-to-br from-violet-50 to-white border border-violet-100">
-                        <div class="flex items-center justify-between mb-2">
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black tracking-widest uppercase bg-violet-600 text-white">解决方案</div>
-                            <i class="fa-solid fa-shield-halved text-violet-600"></i>
+                                <span class="text-[10px] font-black uppercase tracking-widest text-red-300">痛点</span>
+                            </div>
+                            <div class="mb-4">
+                                <h4 class="text-xl font-black text-slate-900 mb-1">质量波动</h4>
+                                <p class="text-sm font-bold text-red-500/80">缺乏标准与方法，出品效果不稳定</p>
+                            </div>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">团队内部缺乏统一的视觉规范与制作标准，导致视频质量参差不齐，严重影响品牌形象与传播效果。</p>
                         </div>
-                        <p class="text-sm font-black text-slate-900 leading-snug">统一标准</p>
-                        <p class="text-[11px] text-slate-500 mt-2">后台预设品牌视觉规范，AI 智能把控输出质量，确保所有出品符合官方标准。</p>
+                        <div class="p-8 bg-gradient-to-br from-violet-50 to-white flex flex-col relative overflow-hidden">
+                            <!-- 装饰背景 -->
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-violet-100 rounded-bl-[100%] -mr-8 -mt-8 opacity-50 z-0"></div>
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="w-12 h-12 bg-violet-600 rounded-2xl shadow-lg shadow-violet-200 flex items-center justify-center text-white text-xl">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                    </div>
+                                    <span class="text-[10px] font-black uppercase tracking-widest text-violet-600 bg-white px-2 py-1 rounded-lg shadow-sm">蜂桥方案</span>
+                                </div>
+                                <h4 class="text-lg font-bold text-violet-900 mb-3">标准化品控</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed font-light">内置行业专业模板与审美算法，减少个人能力差异，确保每一条输出都符合专业水准。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="workflow" class="py-32 bg-white relative overflow-hidden">
+    <section id="workflow" class="py-32 bg-transparent relative overflow-hidden box-content" style="padding-top: 70px; padding-bottom: 70px; overflow: visible;">
         <div class="step-path"></div>
         <div class="max-w-7xl mx-auto px-6 relative">
             <div class="text-center mb-24">
                 <h2 class="h-section text-slate-950 mb-4">核心功能</h2>
-                <p class="text-slate-400 font-medium tracking-wide">全链路 AI 驱动，定义短视频生产新标准</p>
+                <p class="text-slate-400 font-medium tracking-wide">全链路 AI 辅助创作，高效打造高质量视频</p>
             </div>
 
             <div class="space-y-40">
@@ -171,17 +352,26 @@
                         <div class="inline-block p-4 bg-violet-50 rounded-2xl text-violet-600 mb-6 lg:ml-auto">
                             <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
                         </div>
-                        <h3 class="text-3xl font-black text-slate-900 mb-6">多场景模板一键应用</h3>
-                        <p class="text-slate-500 text-base leading-relaxed font-light mb-8 max-w-md lg:ml-auto">内置海量场景模板，统一审美标准，实现生产标准化。</p>
-                        <div class="flex flex-wrap lg:justify-end gap-3">
-                            <span class="px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl text-sm font-medium text-slate-600"><b class="text-slate-900">场景全覆盖：</b> 深度预置媒体快讯、栏目包装、活动宣传、专题解读等专业模板。</span>
-                            <span class="px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl text-sm font-medium text-slate-600"><b class="text-slate-900">审美标准化：</b> 严格遵循行业设计规范，确保非专业人员也能产出高质量内容。</span>
-                            <span class="px-4 py-2 bg-slate-50 border border-slate-100 rounded-xl text-sm font-medium text-slate-600"><b class="text-slate-900">模版沉淀：</b> 成功作品可沉淀为专属模板，支持团队复用，实现优质内容的标准化量产。</span>
+                        <h3 class="text-3xl font-black text-slate-900 mb-6">多场景模板一键套用</h3>
+                        <p class="text-slate-500 text-base leading-relaxed font-light mb-8 max-w-md lg:ml-auto">内置海量场景模板，统一审美标准，实现创作标准化。</p>
+                        <div class="flex flex-col gap-4 lg:items-end">
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left w-full lg:w-auto max-w-md hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">多场景覆盖</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">按照行业与场景分类，预置媒体快讯、栏目包装、活动宣传、专题解读等专业模板。</p>
+                            </div>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left w-full lg:w-auto max-w-md hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">模版沉淀</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">成功作品可沉淀为专属模板，支持团队复用，实现优质内容的标准化量产。</p>
+                            </div>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left w-full lg:w-auto max-w-md hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">审美标准化</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">严格遵循行业设计规范，确保非专业人员也能产出高质量内容。</p>
+                            </div>
                         </div>
                     </div>
                     <div class="order-1 lg:order-2 relative">
-                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group">
-                            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-700">
+                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-[320px] mx-auto">
+                            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=400&h=850&q=80" class="w-full h-[650px] object-cover group-hover:scale-110 transition duration-700">
                         </div>
                     </div>
                 </div>
@@ -189,28 +379,28 @@
                 <div class="relative grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                     <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">02</div>
                     <div class="relative">
-                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group">
-                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-700">
+                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-[320px] mx-auto">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&h=850&q=80" class="w-full h-[650px] object-cover group-hover:scale-110 transition duration-700">
                         </div>
                     </div>
                     <div>
                         <div class="inline-block p-4 bg-violet-50 rounded-2xl text-violet-600 mb-6">
                             <i class="fa-solid fa-cloud-arrow-up text-2xl"></i>
                         </div>
-                        <h3 class="text-3xl font-black text-slate-900 mb-6">多源素材链接解析</h3>
+                        <h3 class="text-3xl font-black text-slate-900 mb-6">多类型素材链接解析</h3>
                         <p class="text-slate-500 text-base leading-relaxed font-light mb-8 max-w-md">打破格式壁垒，支持文案、图片、视频及网页链接解析。</p>
-                        <div class="grid gap-3">
-                            <div class="p-4 bg-slate-50/50 border border-slate-100 rounded-2xl">
-                                <p class="text-sm font-bold text-slate-900 mb-1">链接转视频</p>
-                                <p class="text-xs text-slate-500">输入文章或网页链接，AI 自动抓取核心信息，快速生成视频草稿。</p>
+                        <div class="flex flex-col gap-4">
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">链接转视频</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">输入文章或网页链接，AI 自动抓取核心信息，快速生成视频草稿。</p>
                             </div>
-                            <div class="p-4 bg-slate-50/50 border border-slate-100 rounded-2xl">
-                                <p class="text-sm font-bold text-slate-900 mb-1">智能解析</p>
-                                <p class="text-xs text-slate-500">支持文档、音频和视频素材批量上传，AI 自动识别并提取关键内容。</p>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">智能解析</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">支持文案、音频和视频素材批量上传，AI 自动识别并提取关键内容，生成文案。</p>
                             </div>
-                            <div class="p-4 bg-slate-50/50 border border-slate-100 rounded-2xl">
-                                <p class="text-sm font-bold text-slate-900 mb-1">快速创作</p>
-                                <p class="text-xs text-slate-500">基于现有素材快速生成初稿，无需从零开始构建画面。</p>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">快速创作</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">基于现有素材快速生成初稿，无需从零开始构建视频画面。</p>
                             </div>
                         </div>
                     </div>
@@ -222,30 +412,34 @@
                         <div class="inline-block p-4 bg-violet-50 rounded-2xl text-violet-600 mb-6 lg:ml-auto">
                             <i class="fa-solid fa-sliders text-2xl"></i>
                         </div>
-                        <h3 class="text-3xl font-black text-slate-900 mb-6">AI 辅助精细化创作</h3>
-                        <p class="text-slate-500 text-base leading-relaxed font-light mb-8 max-w-md lg:ml-auto">全链路 AI 辅助，让复杂的剪辑工作简化为简单的表单配置。</p>
-                        <div class="mt-8 space-y-3 max-w-md lg:ml-auto">
-                            <div class="p-4 bg-slate-50/50 border border-slate-100 rounded-2xl">
-                                <p class="text-sm font-bold text-slate-900 mb-1">AI 文案适配</p>
-                                <p class="text-xs text-slate-500">自动将文章改写为适合短视频风格的台词，让语言更生动。</p>
+                        <h3 class="text-3xl font-black text-slate-900 mb-6">AI 辅助精细化视频创作</h3>
+                        <p class="text-slate-500 text-base leading-relaxed font-light mb-8 max-w-md lg:ml-auto">全链路 AI 辅助视频创作，简化复杂剪辑工作。</p>
+                        <div class="mt-8 flex flex-col gap-4 max-w-md lg:ml-auto">
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">个性化配置</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">支持统一设置风格、字号、字幕样式，同时可自定义 Logo、水印、片头片尾等元素，减少重复配置操作。</p>
                             </div>
-                            <div class="p-4 bg-slate-50/50 border border-slate-100 rounded-2xl">
-                                <p class="text-sm font-bold text-slate-900 mb-1">音画智能对齐</p>
-                                <p class="text-xs text-slate-500">画面与台词自动匹配，免去人工逐帧对轴的繁琐工作。</p>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">AI 文案智能优化</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">按短视频平台风格改写台词，还可根据素材片段拆分台词结构，让内容节奏更自然流畅。</p>
                             </div>
-                            <div class="p-4 bg-slate-50/50 border border-slate-100 rounded-2xl">
-                                <p class="text-sm font-bold text-slate-900 mb-1">云端轻量编辑</p>
-                                <p class="text-xs text-slate-500">支持在线裁剪、水印设置及片头、片尾自定义，轻松实现品牌个性化。</p>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">AI 智能编排</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">实现台词与视觉素材自动匹配，降低人工对齐成本，同时支持片段手动增减，兼顾效率与可控性。</p>
                             </div>
-                            <div class="p-4 bg-slate-50/50 border border-slate-100 rounded-2xl">
-                                <p class="text-sm font-bold text-slate-900 mb-1">AI 仿真配音</p>
-                                <p class="text-xs text-slate-500">一键生成媲美真人的专业旁白，无需额外部署录音设备。</p>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">素材在线轻编辑</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">无需额外工具，在平台内即可完成图片、视频的在线裁剪，满足快速处理需求。</p>
+                            </div>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">AI 口播配音</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">一键生成口播配音，无需额外制作，提升成品完整度与可发布性。</p>
                             </div>
                         </div>
                     </div>
                     <div class="relative">
-                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group">
-                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-700">
+                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-[320px] mx-auto">
+                            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&h=850&q=80" class="w-full h-[650px] object-cover group-hover:scale-110 transition duration-700">
                         </div>
                     </div>
                 </div>
@@ -253,28 +447,30 @@
                 <div class="relative grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                     <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">04</div>
                     <div class="relative">
-                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group">
-                            <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=800&q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-700">
+                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-[320px] mx-auto">
+                            <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=400&h=850&q=80" class="w-full h-[650px] object-cover group-hover:scale-110 transition duration-700">
                         </div>
                     </div>
                     <div>
                         <div class="inline-block p-4 bg-violet-50 rounded-2xl text-violet-600 mb-6">
                             <i class="fa-solid fa-bolt-lightning text-2xl"></i>
                         </div>
-                        <h3 class="text-3xl font-black text-slate-900 mb-6">快速预览与交付视频</h3>
-                        <p class="text-slate-500 text-base leading-relaxed font-light mb-8 max-w-md">30 秒预览视频，提升交付效率。</p>
+                        <h3 class="text-3xl font-black text-slate-900 mb-6">视频快速预览校验</h3>
+                        <p class="text-slate-500 text-base leading-relaxed font-light mb-8 max-w-md">30 秒生成预览视频，快速调整问题。</p>
                         <div class="flex flex-col gap-4">
-                            <div class="flex items-center gap-4">
+                            <div class="flex items-start gap-4 p-5 bg-slate-50/50 border border-slate-100 rounded-2xl hover:shadow-sm transition-all duration-300">
                                 <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center flex-shrink-0 text-sm">30s</div>
-                                <p class="text-sm text-slate-600 font-medium">成片前仅需 30 秒即可预览全片节奏与画面，及时发现问题并调整。</p>
+                                <div>
+                                    <h4 class="text-slate-900 font-bold mb-2">30s 视频预览</h4>
+                                    <p class="text-sm text-slate-500 leading-relaxed">支持 30 秒极速生成视频预览，快速校验内容节奏、字幕与画面的匹配度。</p>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center flex-shrink-0 text-sm">1m</div>
-                                <p class="text-sm text-slate-600 font-medium">采用高效渲染引擎，实现分钟级高质量交付，支持手机、电脑多端同步。</p>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center flex-shrink-0 text-sm"><i class="fa-solid fa-share-nodes"></i></div>
-                                <p class="text-sm text-slate-600 font-medium">支持一键分享至社交平台或保存相册，并可基于当前视频快速产出新内容。</p>
+                            <div class="flex items-start gap-4 p-5 bg-slate-50/50 border border-slate-100 rounded-2xl hover:shadow-sm transition-all duration-300">
+                                <div class="w-10 h-10 rounded-full bg-slate-900 text-white flex items-center justify-center flex-shrink-0 text-sm"><i class="fa-solid fa-rotate-left"></i></div>
+                                <div>
+                                    <h4 class="text-slate-900 font-bold mb-2">快速调整问题</h4>
+                                    <p class="text-sm text-slate-500 leading-relaxed">预览效果不符合预期时，可一键返回编辑界面进行调整，无需重新上传素材、重置参数，节省反复试错的时间成本。</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -284,28 +480,58 @@
                     <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">05</div>
                     <div class="lg:text-right">
                         <div class="inline-block p-4 bg-violet-50 rounded-2xl text-violet-600 mb-6 lg:ml-auto">
-                            <i class="fa-solid fa-database text-2xl"></i>
+                            <i class="fa-solid fa-share-nodes text-2xl"></i>
                         </div>
-                        <h3 class="text-3xl font-black text-slate-900 mb-6">视频资源数字化管理</h3>
-                        <p class="text-slate-500 text-base leading-relaxed font-light mb-8 max-w-md lg:ml-auto">建立企业级视频资产中心，挖掘视频内容的长期价值。</p>
-                        <div class="flex flex-wrap lg:justify-end gap-3">
-                            <div class="px-5 py-3 rounded-2xl bg-white border border-slate-100 shadow-sm">
-                                <div class="text-sm font-black text-slate-900">集中化管理</div>
-                                <div class="text-xs text-slate-500 mt-1">历史作品自动存储，支持关键词精准检索，确保素材安全不丢失。</div>
+                        <h3 class="text-3xl font-black text-slate-900 mb-6">视频分钟级生成与分享</h3>
+                        <p class="text-slate-500 text-base leading-relaxed font-light mb-8 max-w-md lg:ml-auto">高效生成视频，多场景流转复用。</p>
+                        <div class="flex flex-col gap-4 lg:items-end">
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left w-full lg:w-auto max-w-md hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">分钟级渲染</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">实现分钟级完整视频生成，快速输出符合平台发布标准的视频。</p>
                             </div>
-                            <div class="px-5 py-3 rounded-2xl bg-white border border-slate-100 shadow-sm">
-                                <div class="text-sm font-black text-slate-900">资产复用</div>
-                                <div class="text-xs text-slate-500 mt-1">每一个视频都是可使用的团队资产，便于随时修改与迭代。</div>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left w-full lg:w-auto max-w-md hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">模版复用</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">可直接复用当前视频的模板样式、结构框架及参数配置，无需从零搭建，助力创作者批量产出系列化、风格统一的内容。</p>
                             </div>
-                            <div class="px-5 py-3 rounded-2xl bg-white border border-slate-100 shadow-sm">
-                                <div class="text-sm font-black text-slate-900">数据沉淀</div>
-                                <div class="text-xs text-slate-500 mt-1">形成长期的内容生产档案，助力品牌构建可延续的视觉体系。</div>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl text-left w-full lg:w-auto max-w-md hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">多场景分享</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">支持一键分享至微信好友或保存至手机相册，兼顾私域传播、本地留存多样化的分发场景。</p>
                             </div>
                         </div>
                     </div>
                     <div class="relative">
-                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group">
-                            <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92eee?auto=format&fit=crop&w=800&q=80" class="w-full h-80 object-cover group-hover:scale-110 transition duration-700">
+                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-[320px] mx-auto">
+                            <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=400&h=850&q=80" class="w-full h-[650px] object-cover group-hover:scale-110 transition duration-700">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                    <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">06</div>
+                    <div class="relative">
+                        <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-[320px] mx-auto">
+                            <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92eee?auto=format&fit=crop&w=400&h=850&q=80" class="w-full h-[650px] object-cover group-hover:scale-110 transition duration-700">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="inline-block p-4 bg-violet-50 rounded-2xl text-violet-600 mb-6">
+                            <i class="fa-solid fa-database text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-slate-900 mb-6">视频资源数字化管理</h3>
+                        <p class="text-slate-500 text-base leading-relaxed font-light mb-8 max-w-md">建立企业内容资产中心，挖掘视频长期价值。</p>
+                        <div class="flex flex-col gap-4">
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">集中化管理</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">历史作品自动存储，支持关键词检索，确保素材安全不丢失。</p>
+                            </div>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">数据沉淀</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">形成长期的内容生产档案，助力品牌构建可延续的视觉体系。</p>
+                            </div>
+                            <div class="p-5 bg-slate-50/50 border border-slate-100 rounded-2xl hover:shadow-sm transition-all duration-300">
+                                <h4 class="text-slate-900 font-bold mb-2">资产复用</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">每一个视频都是可使用的团队资产，便于随时修改与迭代。</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -313,7 +539,7 @@
         </div>
     </section>
 
-    <section id="roi" class="py-32 bg-slate-50 relative overflow-hidden">
+    <section id="roi" class="py-32 bg-gradient-to-b from-transparent to-slate-50/50 relative overflow-hidden" style="padding-top: 70px; padding-bottom: 70px; overflow: visible;">
         <!-- 背景装饰 -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
             <div class="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-violet-200/20 rounded-full blur-[100px] mix-blend-multiply"></div>
@@ -323,7 +549,7 @@
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <!-- 标题区 -->
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6">产品价值<span class="text-violet-600">.</span></h2>
+                <h2 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-6" style="font-weight: 800; font-size: 36px;">产品价值</h2>
                 <p class="text-slate-500 text-lg font-light leading-relaxed max-w-2xl mx-auto">
                     构建从<span class="text-slate-900 font-medium">个人创作</span>到<span class="text-slate-900 font-medium">组织资产</span>的完整价值闭环。
                 </p>
@@ -339,9 +565,9 @@
                     <!-- 顶部内容 -->
                     <div class="relative z-10">
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 text-violet-600 text-[10px] font-bold uppercase tracking-wider mb-6">Start Here</div>
-                        <h3 class="text-3xl font-black text-slate-900 mb-4">极简门槛</h3>
+                        <h3 class="text-3xl font-black text-slate-900 mb-6" style="margin-bottom: 10px;">制作门槛低</h3>
                         <p class="text-slate-500 leading-relaxed text-base">
-                            降低专业技能要求，从“技术驱动”转向“内容驱动”，让具备创意的人员也能独立完成高质量制作。
+                            降低专业技能要求，从“技术驱动”转向“内容驱动”，让具备创意的人员也能独立完成高质量视频制作。
                         </p>
                     </div>
 
@@ -366,7 +592,7 @@
 
                 <!-- 右上：核心效能 (Col-7, Row-1) -->
                 <div class="lg:col-span-7 lg:row-span-1 group relative p-10 rounded-[2.5rem] bg-gradient-to-br from-violet-50 to-white border border-violet-100 overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 flex flex-col justify-center">
-                    <div class="absolute top-0 right-0 w-96 h-96 bg-violet-200/40 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3"></div>
+                    <div class="absolute top-0 right-0 w-96 h-96 bg-violet-200/40 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3" style="border-radius: 9px;"></div>
                     <div class="absolute bottom-0 left-0 w-64 h-64 bg-indigo-100/50 rounded-full blur-[60px] translate-y-1/3 -translate-x-1/3"></div>
                     
                     <div class="relative z-10 flex flex-col sm:flex-row sm:items-center gap-8">
@@ -375,13 +601,13 @@
                                 <div class="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center text-white shadow-lg shadow-violet-200">
                                     <i class="fa-solid fa-bolt"></i>
                                 </div>
-                                <h3 class="text-2xl font-black text-slate-900">极速响应</h3>
+                                <h3 class="text-2xl font-black text-slate-900">制作周期短</h3>
                             </div>
-                            <p class="text-slate-500 text-sm leading-relaxed font-light mb-6">
-                                快速预览，分钟交付。缩短制作周期，确保内容发布紧跟热点趋势。
+                            <p class="text-slate-500 text-sm leading-relaxed font-light mb-6" style="font-size: 15px; font-weight: 400;">
+                                视频 30 秒快速预览，分钟级完成成片交付，缩短制作周期，助力内容发布紧跟热点趋势。
                             </p>
                             <div class="flex gap-4">
-                                <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-xs font-medium text-slate-500 shadow-sm">
+                                <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-xs font-medium text-slate-500 shadow-sm" style="border-radius: 9px;">
                                     <span class="text-slate-900 font-bold">30s</span> 预览
                                 </div>
                                 <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-xs font-medium text-slate-500 shadow-sm">
@@ -406,36 +632,36 @@
                 <!-- 右下：支撑价值 (Col-7, Row-2) -> 分为三个卡片 -->
                 <div class="lg:col-span-7 lg:row-span-1 grid grid-cols-1 sm:grid-cols-3 gap-4">
                     
-                    <!-- 卡片 3: 稳定产出 -->
+                    <!-- 卡片 3: 制作质量高 -->
                     <div class="group relative p-6 rounded-[2rem] bg-white border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
                         <div class="w-10 h-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
-                        <h3 class="text-lg font-black text-slate-900 mb-2">稳定产出</h3>
-                        <p class="text-[11px] text-slate-500 leading-relaxed">
-                            内置多场景模板，减少个人能力差异。通过标准化模板与 AI 算法，确保所有作品均维持在专业水准。
+                        <h3 class="text-lg font-black text-slate-900 mb-2">制作质量高</h3>
+                        <p class="text-[11px] text-slate-500 leading-relaxed" style="font-size: 13px;">
+                            内置多场景模板，通过标准化模板与 AI 辅助视频创作，确保所有作品均维持在专业水准，减少个人能力差异，降低视频质量波动。
                         </p>
                     </div>
 
-                    <!-- 卡片 4: 轻量协同 -->
+                    <!-- 卡片 4: 制作成本低 -->
                     <div class="group relative p-6 rounded-[2rem] bg-white border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
                         <div class="w-10 h-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-people-arrows"></i>
                         </div>
-                        <h3 class="text-lg font-black text-slate-900 mb-2">降本增效</h3>
+                        <h3 class="text-lg font-black text-slate-900 mb-2">制作成本低</h3>
                         <p class="text-[11px] text-slate-500 leading-relaxed">
                             优化生产流程，减少对外部供应商及复杂后期团队的依赖，显著降低沟通与制作成本。
                         </p>
                     </div>
 
-                    <!-- 卡片 5: 规模增长 -->
+                    <!-- 卡片 5: 制作效率高 -->
                     <div class="group relative p-6 rounded-[2rem] bg-white border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
                         <div class="w-10 h-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition-transform">
                             <i class="fa-solid fa-arrow-trend-up"></i>
                         </div>
-                        <h3 class="text-lg font-black text-slate-900 mb-2">规模增长</h3>
+                        <h3 class="text-lg font-black text-slate-900 mb-2">制作效率高</h3>
                         <p class="text-[11px] text-slate-500 leading-relaxed">
-                            产能资产化，通过作品沉淀与同款一键复用，让成功的经验可积累、可复制、可规模化扩张。
+                            内容资产化，通过作品沉淀与同款一键复用，让成功的经验可积累、可复制、可规模化扩张。
                         </p>
                     </div>
 
@@ -444,171 +670,119 @@
         </div>
     </section>
 
-    <section id="audience" class="py-20 bg-slate-50 border-t border-slate-100">
+    <section id="audience" class="py-24 bg-white/40 border-t border-slate-100/50" style="padding-top: 100px; padding-bottom: 100px;">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="h-section mb-4">用户群体</h2>
+            <div class="text-center mb-24">
+                <h2 class="h-section mb-4" style="font-size: 36px;">用户群体</h2>
                 <p class="text-slate-400 text-sm font-medium">提升组织效能，助力个人创作</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24 divide-y md:divide-y-0 md:divide-x divide-slate-100">
                 <!-- 1. 媒体与政府 -->
-                <div class="md:col-span-1 lg:col-span-3 glass-card p-8 rounded-[2rem] bg-white relative overflow-hidden group hover:bg-violet-50/30 transition-colors">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-violet-600/30"></div>
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center text-xl shrink-0">
-                            <i class="fa-solid fa-bullhorn"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-black text-slate-900">媒体与政府宣传</h3>
-                        </div>
+                <div class="group md:px-6 pt-12 md:pt-0">
+                    <div class="mb-10 text-center md:text-left">
+                        <i class="fa-solid fa-bullhorn text-4xl text-violet-600 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                        <h3 class="text-2xl font-black text-slate-900 mb-3">媒体与政府宣传</h3>
+                        <p class="text-xs font-bold text-violet-500 uppercase tracking-widest">主流媒体 / 党政机构</p>
                     </div>
-                    <div class="mb-6">
-                        <span class="inline-block px-3 py-1 bg-slate-100 text-slate-500 rounded-lg text-[10px] font-bold">适用：主流媒体、党政机构、事业单位</span>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
-                            <h4 class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-bolt text-violet-500 mr-2"></i>突发报道</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">面对突发热点，利用“链接转视频”与海量模版，产出资讯短片，抢占第一热点。</p>
-                        </div>
-                        <div class="p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
-                            <h4 class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-landmark text-violet-500 mr-2"></i>政策传播</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">将文档报告转化为为生动易懂的短视频，配合 AI 配音，提升政务信息的传播力与亲和力。</p>
-                        </div>
-                    </div>
+                    <ul class="space-y-8">
+                        <li>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">突发报道</h4>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">面对突发热点，利用海量模版与链接解析，产出资讯视频，抢占第一热点。</p>
+                        </li>
+                        <li>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">政策传播</h4>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">配合 AI 配音，将文章或报告转化为生动短视频，提升政务信息亲和力。</p>
+                        </li>
+                        <li>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">质量管控</h4>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">通过标准化模板统一审美标准，确保整体产出质量的稳定性。</p>
+                        </li>
+                    </ul>
                 </div>
 
                 <!-- 2. 央国企 -->
-                <div class="md:col-span-1 lg:col-span-3 glass-card p-8 rounded-[2rem] bg-white relative overflow-hidden group hover:bg-violet-50/30 transition-colors">
-                    <div class="absolute top-0 left-0 w-1 h-full bg-blue-600/30"></div>
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center text-xl shrink-0">
-                            <i class="fa-solid fa-building"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-black text-slate-900">央国企与社会团体</h3>
-                        </div>
+                <div class="group md:px-6 pt-12 md:pt-0">
+                    <div class="mb-10 text-center md:text-left">
+                        <i class="fa-solid fa-building text-4xl text-blue-600 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                        <h3 class="text-2xl font-black text-slate-900 mb-3">央国企与社会团体</h3>
+                        <p class="text-xs font-bold text-blue-500 uppercase tracking-widest">宣传部 / 行业协会</p>
                     </div>
-                    <div class="mb-6">
-                        <span class="inline-block px-3 py-1 bg-slate-100 text-slate-500 rounded-lg text-[10px] font-bold">适用：央国企宣传部、行业协会、社会团体宣传人员</span>
-                    </div>
-                    <div class="space-y-4">
-                        <div class="p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
-                            <h4 class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-video text-blue-500 mr-2"></i>成果汇报</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">针对项目结项、企业年报，通过预置的海量模板，制作汇报视频。</p>
-                        </div>
-                        <div class="p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
-                            <h4 class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-swatchbook text-blue-500 mr-2"></i>品牌统一</h4>
-                            <p class="text-xs text-slate-500 leading-relaxed">建立品牌专属素材库，实现跨部门协作时的视觉风格统一，确保每一条宣传片都符合品牌标准化要求。</p>
-                        </div>
-                    </div>
+                    <ul class="space-y-8">
+                        <li>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">成果汇报</h4>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">针对项目结项、企业年报，通过预置的海量模板，制作汇报视频。</p>
+                        </li>
+                        <li>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">产能管理</h4>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">实时掌握生产进度，将素材转化为数字资产，实现内容生产降本增效。</p>
+                        </li>
+                        <li>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">品牌统一</h4>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">建立品牌专属素材库，实现跨部门协作视觉统一。</p>
+                        </li>
+                    </ul>
                 </div>
 
                 <!-- 3. 内容创作专业人士 -->
-                <div class="md:col-span-1 lg:col-span-2 glass-card p-6 rounded-[2rem] bg-white flex flex-col hover:-translate-y-1 transition-transform">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-rose-100 text-rose-500 rounded-xl flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-pen-nib"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900">内容创作专业人士</h3>
-                        </div>
+                <div class="group md:px-6 pt-12 md:pt-0">
+                    <div class="mb-10 text-center md:text-left">
+                        <i class="fa-solid fa-pen-nib text-4xl text-rose-500 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
+                        <h3 class="text-2xl font-black text-slate-900 mb-3">内容创作专业人士</h3>
+                        <p class="text-xs font-bold text-rose-500 uppercase tracking-widest">记者 / 编辑 / 自媒体</p>
                     </div>
-                    <p class="text-[10px] text-slate-400 mb-4 px-2">适用：记者、编辑、编导、主持人</p>
-                    <div class="space-y-3 mt-auto">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                            <div class="text-xs font-bold text-slate-800 mb-1">辅助采编</div>
-                            <p class="text-[10px] text-slate-500 leading-snug">帮助前线记者快速处理现场素材，将台词文案与画面自动对齐，把精力从繁琐的剪辑回归到内容本身。</p>
-                        </div>
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                            <div class="text-xs font-bold text-slate-800 mb-1">个人 IP 构建</div>
-                            <p class="text-[10px] text-slate-500 leading-snug">为主持人、编辑提供提供低创作门槛的便捷工具，通过模板复用快速建立具备辨识度的视频风格。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. 新媒体运营 -->
-                <div class="md:col-span-1 lg:col-span-2 glass-card p-6 rounded-[2rem] bg-white flex flex-col hover:-translate-y-1 transition-transform">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900">新媒体运营矩阵</h3>
-                        </div>
-                    </div>
-                    <p class="text-[10px] text-slate-400 mb-4 px-2">适用：短视频运营、内容营销人员</p>
-                    <div class="space-y-3 mt-auto">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                            <div class="text-xs font-bold text-slate-800 mb-1">高频内容更新</div>
-                            <p class="text-[10px] text-slate-500 leading-snug">针对短视频平台算法，利用批量视频生产能力实现内容日更，通过“AI 文案改写”自动适配不同平台的话术风格。</p>
-                        </div>
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                            <div class="text-xs font-bold text-slate-800 mb-1">矩阵协同管理</div>
-                            <p class="text-[10px] text-slate-500 leading-snug">沉淀数字化作品资产，让历史视频素材可检索、可复用，大幅降低跨团队、跨平台的运营成本。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. 管理者 -->
-                <div class="md:col-span-1 lg:col-span-2 glass-card p-6 rounded-[2rem] bg-white flex flex-col hover:-translate-y-1 transition-transform">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-gauge-high"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-slate-900">内容与经营管理者</h3>
-                        </div>
-                    </div>
-                    <p class="text-[10px] text-slate-400 mb-4 px-2">适用：传媒机构、企业内容营销</p>
-                    <div class="space-y-3 mt-auto">
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                            <div class="text-xs font-bold text-slate-800 mb-1">产能管理</div>
-                            <p class="text-[10px] text-slate-500 leading-snug">实时掌握生产进度，将分散的视频素材转化为企业可控的数字资产，实现内容生产的降本增效。</p>
-                        </div>
-                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
-                            <div class="text-xs font-bold text-slate-800 mb-1">质量管控</div>
-                            <p class="text-[10px] text-slate-500 leading-snug">通过标准化模板统一审美标准，减少团队成员水平波动，确保整体产出质量的稳定性。</p>
-                        </div>
-                    </div>
+                    <ul class="space-y-8">
+                        <li>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">辅助采编</h4>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">快速处理现场素材，台词文案自动对齐，回归内容本身。</p>
+                        </li>
+                        <li>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">高频更新</h4>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">AI 文案改写 + 模板复用，高效达成多平台高频更新需求。</p>
+                        </li>
+                        <li>
+                            <h4 class="font-bold text-slate-900 text-base mb-2">个人 IP 构建</h4>
+                            <p class="text-sm text-slate-500 leading-relaxed font-light">低门槛工具，快速建立具备辨识度的视频风格。</p>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="strategy" class="py-24 bg-slate-50">
+    <section id="strategy" class="py-24 bg-slate-50/30" style="padding-top: 70px; padding-bottom: 70px;">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="h-section mb-12">战略意义</h2>
-            <p class="text-slate-500 text-sm mb-10 font-light">蜂桥创作，驱动内容生产力的数字化升级</p>
+            <h2 class="h-section mb-12" style="margin-bottom: 40px;">人人可生产 赋能组织升级</h2>
+            <p class="text-slate-500 text-sm mb-10 font-light max-w-3xl mx-auto leading-relaxed">蜂桥创作通过“手机 + AI”的短视频生产力变革，推动组织在智能化、视频化、移动化方向的系统升级</p>
             <div class="grid lg:grid-cols-3 gap-6 text-left">
                 <div class="glass-card p-10 rounded-[2.5rem] flex items-start gap-6">
                     <span class="text-4xl font-black text-violet-100 italic">01</span>
                     <div>
-                        <h4 class="font-bold text-lg mb-2">全员普及</h4>
-                        <p class="text-sm text-slate-600 leading-relaxed font-light">降低技术门槛，使视频制作成为通用的基础办公能力。</p>
+                        <h4 class="font-bold text-lg mb-2">生产模式变革</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed font-light">让内容生产从“中心化剪辑团队”转向“人人可生产”的工作方式。</p>
                     </div>
                 </div>
                 <div class="glass-card p-10 rounded-[2.5rem] flex items-start gap-6">
                     <span class="text-4xl font-black text-violet-100 italic">02</span>
                     <div>
-                        <h4 class="font-bold text-lg mb-2">构建 IP 矩阵生产力</h4>
-                        <p class="text-sm text-slate-600 leading-relaxed font-light">为工作室模式提供底层工具支持，实现轻量化、敏捷化的 IP 孵化。</p>
+                        <h4 class="font-bold text-lg mb-2">组织经营创新</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed font-light">支撑 IP 矩阵 / 工作室模式 的组织变革与经营创新。</p>
                     </div>
                 </div>
                 <div class="glass-card p-10 rounded-[2.5rem] flex items-start gap-6">
                     <span class="text-4xl font-black text-violet-100 italic">03</span>
                     <div>
-                        <h4 class="font-bold text-lg mb-2">资产沉淀</h4>
-                        <p class="text-sm text-slate-600 leading-relaxed font-light">实现视频内容的结构化存储与复用，将碎片化素材转化为长期企业资产。</p>
+                        <h4 class="font-bold text-lg mb-2">业务持续增长</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed font-light">同时满足新闻宣传与企业经营的内容需求，助力主流媒体与机构客户实现可持续增长。</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="footer-cta" class="py-20 bg-white">
+    <section id="footer-cta" class="py-20 bg-transparent" style="padding-top: 50px; padding-bottom: 50px;">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="glass-card p-12 md:p-14 rounded-[2.75rem] bg-white/70 relative overflow-hidden text-center">
+            <div class="glass-card p-12 md:p-14 rounded-[2.75rem] bg-white/70 relative overflow-hidden text-center" style="padding-top: 20px; padding-bottom: 20px;">
                 <div class="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-violet-500 via-violet-400/60 to-transparent"></div>
                 <h2 class="h-section mb-4">准备好升级您的短视频生产力了吗？</h2>
                 <p class="text-slate-500 text-sm md:text-base font-light mb-10">每一分钟，都有数万条视频在蜂桥创作中诞生。</p>
@@ -621,4 +795,5 @@
     </section>
 
 </body>
+</html>
 </html>
