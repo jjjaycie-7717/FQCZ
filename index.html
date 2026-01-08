@@ -85,6 +85,38 @@
             z-index: 0;
         }
         @media (max-width: 1024px) { .step-path { left: 24px; transform: none; } }
+
+        /* 移动端优化：间距调整与标题颜色 */
+        @media (max-width: 768px) {
+            /* 1. 缩小每个模块间的间距 */
+            section {
+                padding-top: 40px !important;
+                padding-bottom: 40px !important;
+            }
+
+            /* 2. 缩小模块标题和内容的间距 */
+            .mb-24, .mb-20, .mb-16, .mb-12 {
+                margin-bottom: 20px !important;
+            }
+            /* 针对核心功能列表间距 */
+            .space-y-40 > :not([hidden]) ~ :not([hidden]) {
+                margin-top: 40px !important;
+            }
+
+            /* 3. 指定标题变为紫色 */
+            /* 你的生产力，正在拖慢创意吗？ */
+            section:not([id]) .h-section,
+            /* 核心功能 */
+            #workflow .h-section,
+            /* 产品价值 */
+            #roi h2,
+            /* 用户群体 */
+            #audience .h-section,
+            /* 人人可生产 赋能组织升级 */
+            #strategy .h-section {
+                color: #7c3aed !important;
+            }
+        }
     </style>
 </head>
 <body class="selection:bg-violet-100">
