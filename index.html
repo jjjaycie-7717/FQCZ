@@ -94,6 +94,11 @@
                 padding-bottom: 40px !important;
             }
 
+            /* 首屏单独处理：避免被固定导航遮挡 */
+            body > section:first-of-type {
+                padding-top: calc(64px + env(safe-area-inset-top, 0px) + 24px) !important;
+            }
+
             /* 2. 缩小模块标题和内容的间距 */
             .mb-24, .mb-20, .mb-16, .mb-12 {
                 margin-bottom: 20px !important;
@@ -680,7 +685,6 @@
                     
                     <!-- 顶部内容 -->
                     <div class="relative z-10">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 text-violet-600 text-[10px] font-bold uppercase tracking-wider mb-6">Start Here</div>
                         <h3 class="text-3xl font-bold text-[#000000] mb-6" style="margin-bottom: 10px;">制作门槛低</h3>
                         <p class="text-[#333333] leading-relaxed text-base">
                             降低专业技能要求，从“技术驱动”转向“内容驱动”，让具备创意的人员也能独立完成高质量视频制作。
