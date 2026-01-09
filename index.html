@@ -181,6 +181,47 @@
                 order: 4;
             }
 
+            /* 首屏内容间距缩小 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > div.inline-flex {
+                margin-bottom: 20px !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > h1 {
+                margin-bottom: 16px !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > p {
+                margin-bottom: 24px !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > .flex.flex-wrap {
+                margin-bottom: 0 !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > .mt-12 {
+                margin-top: 24px !important;
+                padding-top: 20px !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 {
+                margin-bottom: 24px !important;
+            }
+        }
+
+        /* PC端首屏内容间距缩小 */
+        @media (min-width: 1024px) {
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > div.inline-flex {
+                margin-bottom: 24px !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > h1 {
+                margin-bottom: 20px !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > p {
+                margin-bottom: 32px !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > .flex.flex-wrap {
+                margin-bottom: 0 !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > .mt-12 {
+                margin-top: 32px !important;
+                padding-top: 24px !important;
+            }
+
             /* 移动端底部：两个二维码居中 */
             footer .flex.gap-8 {
                 justify-content: center !important;
