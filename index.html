@@ -121,6 +121,11 @@
             #strategy .h-section {
                 color: #7c3aed !important;
             }
+
+            /* 首屏右侧手机区域 margin-top 调整 */
+            section.relative.pt-32 div.relative.mt-12[class*="lg:mt-0"] {
+                margin-top: 45px !important;
+            }
         }
 
         @keyframes shimmer {
@@ -146,19 +151,19 @@
     <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-gray-100 h-16 flex items-center">
         <div class="max-w-7xl mx-auto w-full px-6 flex justify-between items-center relative">
             <div class="flex items-center gap-3">
-                <img src="image/public/logo1.png" alt="蜂桥创作" class="h-9 w-auto">
+                <img src="image/public/logo1.png" alt="蜂桥创作" class="h-9 w-auto" style="font-size: 15px;">
             </div>
             
             <!-- 桌面端菜单 -->
             <div class="hidden md:flex gap-10 text-[11px] font-bold text-[#333333] uppercase tracking-widest">
-                <a href="#workflow" class="hover:text-violet-600 transition" style="font-size: 13px;">短视频创作流程</a>
-                <a href="#roi" class="hover:text-violet-600 transition" style="font-size: 13px;">产品价值</a>
-                <a href="#audience" class="hover:text-violet-600 transition" style="font-size: 13px;">用户群体</a>
-                <a href="#strategy" class="hover:text-violet-600 transition" style="font-size: 13px;">战略意义</a>
+                <a href="#workflow" class="hover:text-violet-600 transition" style="font-size: 15px;">短视频创作流程</a>
+                <a href="#roi" class="hover:text-violet-600 transition" style="font-size: 15px;">产品价值</a>
+                <a href="#audience" class="hover:text-violet-600 transition" style="font-size: 15px;">用户群体</a>
+                <a href="#strategy" class="hover:text-violet-600 transition" style="font-size: 15px;">战略意义</a>
             </div>
             
             <div class="hidden md:block relative group">
-                <button class="bg-slate-900 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-violet-600 transition" style="font-size: 13px;">立即体验</button>
+                <button class="bg-slate-900 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-violet-600 transition" style="font-size: 14px;">立即体验</button>
                 <div class="absolute top-full right-0 mt-2 p-3 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 border border-slate-100 w-40 text-center">
                     <img src="image/public/xcx code.jpeg" alt="扫码体验" class="w-full h-auto object-contain mb-2 rounded-lg">
                     <p class="text-xs text-[#333333] font-medium">微信扫码体验</p>
@@ -194,9 +199,9 @@
                 </div>
                 <h1 class="text-4xl md:text-6xl lg:text-[65px] font-bold text-[#000000] leading-[1.1] mb-6 tracking-tighter">
                     AI 短视频创作<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 italic block text-xl md:text-3xl lg:text-4xl mt-4 leading-normal">人人都能 随时随地 快速制作 专业短视频</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-indigo-600 italic block text-xl md:text-3xl lg:text-4xl mt-4 leading-normal" style="font-size: 32px;">人人都能 随时随地 快速制作 专业短视频</span>
                 </h1>
-                <p class="text-base md:text-lg text-[#333333] max-w-[540px] mb-10 leading-relaxed font-light">
+                <p class="text-base md:text-lg text-[#333333] max-w-[540px] mb-10 leading-relaxed font-normal">
                     蜂桥创作是一款移动端 AI 短视频制作工具，只需选择模板、导入稿件与素材，就能实现 30 秒预览效果，分钟级生成成片，让不会剪辑的用户也能轻松产出高质量专业短视频。
                 </p>
                 <div class="flex flex-wrap gap-4 md:gap-6 items-center">
@@ -268,147 +273,126 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20">
                 <h2 class="h-section text-[#000000] mb-4">你的生产力，正在拖慢创意吗？</h2>
-                <p class="text-[#666666] text-sm font-medium">打破视频生产瓶颈，释放内容创作潜力</p>
+                <p class="text-[#666666] text-lg font-medium">打破视频生产瓶颈，释放内容创作潜力</p>
             </div>
 
-            <div class="flex flex-col">
-                <!-- 1 -->
-                <div class="group relative grid md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-12 items-center py-12 border-b border-slate-100/50 hover:bg-slate-50/30 transition-colors rounded-2xl px-4">
-                    <!-- Pain -->
-                    <div class="flex flex-row md:flex-row-reverse items-start gap-5 md:text-right">
-                        <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-red-500 text-xl flex-shrink-0 mt-1">
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Item 1 -->
+                <div class="group relative bg-white border border-slate-100 rounded-3xl p-8 hover:shadow-xl hover:shadow-violet-100/50 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-6">
+                         <h3 class="text-xl font-bold text-slate-900">人员限制</h3>
+                         <div class="w-10 h-10 bg-red-50 text-red-500 rounded-full flex items-center justify-center">
                             <i class="fa-solid fa-user-lock"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 md:justify-end mb-1">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-red-400 bg-red-50 px-2 py-0.5 rounded-lg">痛点</span>
-                                <h4 class="text-lg font-bold text-[#000000]">人员限制</h4>
-                            </div>
-                            <p class="text-xs font-bold text-red-400 mb-2">进度卡在“剪辑”</p>
-                            <p class="text-sm text-[#666666] leading-relaxed">依赖专业剪辑，排期拥堵导致创作停滞。</p>
-                        </div>
+                         </div>
                     </div>
                     
-                    <!-- Arrow -->
-                    <div class="hidden md:flex justify-center">
-                        <div class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-[#bbbbbb] group-hover:bg-violet-600 group-hover:border-violet-600 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-arrow-right"></i>
+                    <div class="space-y-6">
+                        <!-- Pain -->
+                        <div class="relative pl-4 border-l-2 border-red-100">
+                            <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-red-400 rounded-full ring-4 ring-white"></div>
+                            <h4 class="text-sm font-bold text-red-500 mb-2">有素材没视频，进度卡在“剪辑”</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed text-justify">
+                                稿件与素材虽然准备就绪，但视频制作高度依赖专业剪辑人员，往往因人力不足或排期拥堵导致创作停滞。
+                            </p>
                         </div>
-                    </div>
-                    
-                    <!-- Solution -->
-                    <div class="flex items-start gap-5">
-                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center text-violet-600 text-xl flex-shrink-0 mt-1">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-1">
-                                <h4 class="text-lg font-bold text-[#000000]">自主创作</h4>
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-violet-600 bg-violet-50 px-2 py-0.5 rounded-lg">蜂桥方案</span>
-                            </div>
-                            <p class="text-sm text-[#333333] leading-relaxed">运营人员也能独立完成视频，不再受限于排期。</p>
+
+                        <!-- Solution -->
+                        <div class="relative pl-4 border-l-2 border-violet-100">
+                             <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-violet-600 rounded-full ring-4 ring-white"></div>
+                            <h4 class="text-sm font-bold text-violet-600 mb-2">自主创作</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed text-justify">
+                                降低视频创作门槛，让文案与运营人员也能通过 AI 工具独立完成视频制作，不再受限于专业剪辑排期。
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 2 -->
-                <div class="group relative grid md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-12 items-center py-12 border-b border-slate-100/50 hover:bg-slate-50/30 transition-colors rounded-2xl px-4">
-                    <div class="flex flex-row md:flex-row-reverse items-start gap-5 md:text-right">
-                        <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-red-500 text-xl flex-shrink-0 mt-1">
+                <!-- Item 2 -->
+                 <div class="group relative bg-white border border-slate-100 rounded-3xl p-8 hover:shadow-xl hover:shadow-violet-100/50 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-6">
+                         <h3 class="text-xl font-bold text-slate-900">时效滞后</h3>
+                         <div class="w-10 h-10 bg-red-50 text-red-500 rounded-full flex items-center justify-center">
                             <i class="fa-solid fa-hourglass-start"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 md:justify-end mb-1">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-red-400 bg-red-50 px-2 py-0.5 rounded-lg">痛点</span>
-                                <h4 class="text-lg font-bold text-[#000000]">时效滞后</h4>
-                            </div>
-                            <p class="text-xs font-bold text-red-400 mb-2">错失黄金时机</p>
-                            <p class="text-sm text-[#666666] leading-relaxed">制作流程冗长，内容发出时热点已过。</p>
-                        </div>
+                         </div>
                     </div>
-                    <div class="hidden md:flex justify-center">
-                        <div class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-[#bbbbbb] group-hover:bg-violet-600 group-hover:border-violet-600 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-arrow-right"></i>
+                    
+                    <div class="space-y-6">
+                        <!-- Pain -->
+                        <div class="relative pl-4 border-l-2 border-red-100">
+                            <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-red-400 rounded-full ring-4 ring-white"></div>
+                            <h4 class="text-sm font-bold text-red-500 mb-2">热点转瞬即逝，错失黄金传播时机</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed text-justify">
+                               突发热点需要即时响应，但传统视频制作流程冗长、沟通反复效率低，导致内容发出时已错失最佳传播时机。
+                            </p>
                         </div>
-                    </div>
-                    <div class="flex items-start gap-5">
-                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center text-violet-600 text-xl flex-shrink-0 mt-1">
-                            <i class="fa-solid fa-bolt"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-1">
-                                <h4 class="text-lg font-bold text-[#000000]">敏捷交付</h4>
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-violet-600 bg-violet-50 px-2 py-0.5 rounded-lg">蜂桥方案</span>
-                            </div>
-                            <p class="text-sm text-[#333333] leading-relaxed">分钟级快速成片，确保资讯第一时间发布。</p>
+
+                        <!-- Solution -->
+                        <div class="relative pl-4 border-l-2 border-violet-100">
+                             <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-violet-600 rounded-full ring-4 ring-white"></div>
+                            <h4 class="text-sm font-bold text-violet-600 mb-2">敏捷交付</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed text-justify">
+                                简化制作流程，支持手机端分钟级快速成片，确保资讯内容在第一时间发布。
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 3 -->
-                <div class="group relative grid md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-12 items-center py-12 border-b border-slate-100/50 hover:bg-slate-50/30 transition-colors rounded-2xl px-4">
-                    <div class="flex flex-row md:flex-row-reverse items-start gap-5 md:text-right">
-                        <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-red-500 text-xl flex-shrink-0 mt-1">
+                <!-- Item 3 -->
+                 <div class="group relative bg-white border border-slate-100 rounded-3xl p-8 hover:shadow-xl hover:shadow-violet-100/50 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-6">
+                         <h3 class="text-xl font-bold text-slate-900">产能不足</h3>
+                         <div class="w-10 h-10 bg-red-50 text-red-500 rounded-full flex items-center justify-center">
                             <i class="fa-solid fa-battery-quarter"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 md:justify-end mb-1">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-red-400 bg-red-50 px-2 py-0.5 rounded-lg">痛点</span>
-                                <h4 class="text-lg font-bold text-[#000000]">产能不足</h4>
-                            </div>
-                            <p class="text-xs font-bold text-red-400 mb-2">无法规模复制</p>
-                            <p class="text-sm text-[#666666] leading-relaxed">人手成本高，难以实现产能规模化增长。</p>
-                        </div>
+                         </div>
                     </div>
-                    <div class="hidden md:flex justify-center">
-                        <div class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-[#bbbbbb] group-hover:bg-violet-600 group-hover:border-violet-600 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-arrow-right"></i>
+                    
+                    <div class="space-y-6">
+                        <!-- Pain -->
+                        <div class="relative pl-4 border-l-2 border-red-100">
+                            <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-red-400 rounded-full ring-4 ring-white"></div>
+                            <h4 class="text-sm font-bold text-red-500 mb-2">多渠道高频创作，无法规模化复制</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed text-justify">
+                               面对多账号矩阵与多场景覆盖的视频产出需求，单纯依靠增加人手成本高，且难以实现产能的规模化增长。
+                            </p>
                         </div>
-                    </div>
-                    <div class="flex items-start gap-5">
-                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center text-violet-600 text-xl flex-shrink-0 mt-1">
-                            <i class="fa-solid fa-shapes"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-1">
-                                <h4 class="text-lg font-bold text-[#000000]">模版创作</h4>
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-violet-600 bg-violet-50 px-2 py-0.5 rounded-lg">蜂桥方案</span>
-                            </div>
-                            <p class="text-sm text-[#333333] leading-relaxed">复用模版批量生产，实现低成本高频供给。</p>
+
+                        <!-- Solution -->
+                        <div class="relative pl-4 border-l-2 border-violet-100">
+                             <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-violet-600 rounded-full ring-4 ring-white"></div>
+                            <h4 class="text-sm font-bold text-violet-600 mb-2">模版创作</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed text-justify">
+                                通过复用同款模版与批量生产创作视频的功能，打破人力产能天花板，实现低成本的高频内容供给。
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 4 -->
-                <div class="group relative grid md:grid-cols-[1fr_auto_1fr] gap-6 md:gap-12 items-center py-12 hover:bg-slate-50/30 transition-colors rounded-2xl px-4">
-                    <div class="flex flex-row md:flex-row-reverse items-start gap-5 md:text-right">
-                        <div class="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-red-500 text-xl flex-shrink-0 mt-1">
+                <!-- Item 4 -->
+                 <div class="group relative bg-white border border-slate-100 rounded-3xl p-8 hover:shadow-xl hover:shadow-violet-100/50 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-6">
+                         <h3 class="text-xl font-bold text-slate-900">质量波动</h3>
+                         <div class="w-10 h-10 bg-red-50 text-red-500 rounded-full flex items-center justify-center">
                             <i class="fa-solid fa-wave-square"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 md:justify-end mb-1">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-red-400 bg-red-50 px-2 py-0.5 rounded-lg">痛点</span>
-                                <h4 class="text-lg font-bold text-[#000000]">质量波动</h4>
-                            </div>
-                            <p class="text-xs font-bold text-red-400 mb-2">出品效果不稳</p>
-                            <p class="text-sm text-[#666666] leading-relaxed">缺乏统一规范，严重影响品牌形象。</p>
-                        </div>
+                         </div>
                     </div>
-                    <div class="hidden md:flex justify-center">
-                        <div class="w-10 h-10 rounded-full border border-slate-100 flex items-center justify-center text-[#bbbbbb] group-hover:bg-violet-600 group-hover:border-violet-600 group-hover:text-white transition-all">
-                            <i class="fa-solid fa-arrow-right"></i>
+                    
+                    <div class="space-y-6">
+                        <!-- Pain -->
+                        <div class="relative pl-4 border-l-2 border-red-100">
+                            <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-red-400 rounded-full ring-4 ring-white"></div>
+                            <h4 class="text-sm font-bold text-red-500 mb-2">缺乏标准与方法，出品效果不稳定</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed text-justify">
+                               团队内部缺乏统一的视觉规范与制作标准，导致视频质量参差不齐，严重影响品牌形象与传播效果。
+                            </p>
                         </div>
-                    </div>
-                    <div class="flex items-start gap-5">
-                        <div class="w-12 h-12 bg-violet-50 rounded-xl flex items-center justify-center text-violet-600 text-xl flex-shrink-0 mt-1">
-                            <i class="fa-solid fa-check-double"></i>
-                        </div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-1">
-                                <h4 class="text-lg font-bold text-[#000000]">标准化品控</h4>
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-violet-600 bg-violet-50 px-2 py-0.5 rounded-lg">蜂桥方案</span>
-                            </div>
-                            <p class="text-sm text-[#333333] leading-relaxed">内置专业审美算法，确保输出符合专业水准。</p>
+
+                        <!-- Solution -->
+                        <div class="relative pl-4 border-l-2 border-violet-100">
+                             <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 bg-violet-600 rounded-full ring-4 ring-white"></div>
+                            <h4 class="text-sm font-bold text-violet-600 mb-2">标准化品控</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed text-justify">
+                                内置行业专业模板与审美算法，减少个人能力差异，确保每一条输出都符合专业水准。
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -671,8 +655,8 @@
             <!-- 标题区 -->
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-[#000000] tracking-tight mb-6" style="font-weight: 800; font-size: 36px;">产品价值</h2>
-                <p class="text-[#333333] text-lg font-light leading-relaxed max-w-2xl mx-auto">
-                    构建从<span class="text-[#000000] font-medium">个人创作</span>到<span class="text-[#000000] font-medium">组织资产</span>的完整价值闭环。
+                <p class="text-[#333333] text-lg font-medium leading-relaxed max-w-2xl mx-auto">
+                    构建从<span class="text-[#000000] font-medium">个人创作</span>到<span class="text-[#000000] font-medium" style="font-weight: 500;">组织资产</span>的完整价值闭环。
                 </p>
             </div>
 
@@ -692,7 +676,7 @@
                     </div>
 
                     <!-- 中间视觉引导 -->
-                    <div class="relative z-10 my-8 flex-grow flex items-center justify-center opacity-100">
+                    <div class="relative z-10 flex-grow flex items-center justify-center opacity-100" style="margin-top: 15px; margin-bottom: 15px;">
                          <div class="relative w-full h-auto py-8 bg-slate-50/80 rounded-2xl border border-slate-100 flex items-center justify-evenly overflow-hidden backdrop-blur-sm">
                             <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
                             
