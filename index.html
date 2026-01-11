@@ -259,11 +259,96 @@
             /* 5. 首屏：手机屏幕上下间隔缩小 */
             /* 手机上方的描述文字 margin-bottom */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > p {
-                margin-bottom: 12px !important;
+                margin-bottom: 8px !important;
             }
             /* 手机容器本身的 margin-bottom (手机下方是按钮) */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 {
-                margin-bottom: 15px !important;
+                margin-top: 10px !important;
+                margin-bottom: 10px !important;
+            }
+
+            /* --- 2026-01-11 优化调整 Round 2 --- */
+
+            /* 1. 右侧进度条（滚动条）隐藏/优化 */
+            ::-webkit-scrollbar {
+                width: 0px !important;
+                background: transparent !important;
+            }
+
+            /* 2. 6个悬浮元素位置调整 (针对移动端) */
+            /* 容器 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 {
+                overflow: visible !important; /* 允许悬浮元素溢出一点 */
+            }
+            /* 选中所有悬浮卡片 (根据共同特征: absolute, glass-card, rounded-2xl) */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div.absolute.glass-card {
+                transform: scale(0.7) !important; /* 整体缩小 */
+                padding: 8px !important;
+                max-width: 140px !important;
+                z-index: 30 !important;
+            }
+            /* 图标大小适配 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div.absolute.glass-card .w-8 {
+                width: 24px !important;
+                height: 24px !important;
+                font-size: 14px !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div.absolute.glass-card .text-xs {
+                font-size: 10px !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div.absolute.glass-card .text-\[10px\] {
+                display: none !important; /* 隐藏小字描述，减少干扰 */
+            }
+            
+            /* 重新定位 6个元素 */
+            /* 左上 - AI智能配音 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(3) {
+                top: 5% !important; left: -10px !important; right: auto !important;
+            }
+            /* 左中 - AI文案优化 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(4) {
+                top: 40% !important; left: -15px !important; right: auto !important;
+            }
+            /* 左下 - 智能编排 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(5) {
+                bottom: 15% !important; top: auto !important; left: -5px !important; right: auto !important;
+            }
+            /* 右上 - 30s预览 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(6) {
+                top: 10% !important; right: -10px !important; left: auto !important;
+            }
+            /* 右中 - 自动字幕 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(7) {
+                top: 45% !important; right: -15px !important; left: auto !important;
+            }
+            /* 右下 - 一键分享 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(8) {
+                bottom: 20% !important; top: auto !important; right: -5px !important; left: auto !important;
+            }
+
+            /* 3. 缩小首屏文案间距 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > h1 {
+                margin-bottom: 5px !important;
+                line-height: 1.1 !important;
+            }
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > h1 span {
+                margin-top: 5px !important;
+            }
+            
+            /* 4. 缩小短视频创作流程中的标题内容间距 */
+            #workflow .text-center {
+                margin-bottom: 30px !important; /* 原 mb-24(96px) -> 20px -> 30px(稍微宽松一点点以免太挤，或者按需调整) */
+            }
+            #workflow .text-center h2 {
+                margin-bottom: 5px !important;
+            }
+            #workflow .text-center p {
+                margin-top: 0 !important;
+                font-size: 15px !important;
+            }
+            /* 缩小流程步骤间的垂直间距 */
+            .space-y-32 > :not([hidden]) ~ :not([hidden]) {
+                margin-top: 50px !important; /* 默认 space-y-32 是 8rem(128px)，改为 50px */
             }
         }
 
