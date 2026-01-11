@@ -799,61 +799,124 @@
                     
                     <!-- 顶部内容 -->
                     <div class="relative z-10">
-                        <h3 class="text-3xl font-bold text-[#000000] mb-6" style="margin-bottom: 10px;">制作门槛低</h3>
-                        <p class="text-[#333333] leading-relaxed text-base">
-                            降低专业技能要求，从“技术驱动”转向“内容驱动”，让具备创意的人员也能独立完成高质量视频制作。
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center">
+                                <i class="fa-solid fa-layer-group text-violet-600"></i>
+                            </div>
+                            <h3 class="text-3xl font-bold text-[#000000]">制作门槛低</h3>
+                        </div>
+                        <p class="text-[#333333] leading-relaxed text-base mb-4">
+                            降低专业技能要求，从"技术驱动"转向"内容驱动"，让具备创意的人员也能独立完成高质量视频制作。
                         </p>
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-[#666666]">零基础上手</span>
+                            <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-[#666666]">快速出片</span>
+                            <span class="px-3 py-1 bg-violet-50 border border-violet-200 rounded-lg text-xs font-medium text-violet-600">AI 辅助</span>
+                        </div>
                     </div>
 
                     <!-- 中间视觉引导 -->
-                    <div class="relative z-10 flex-grow flex items-center justify-center opacity-100" style="margin-top: 15px; margin-bottom: 15px;">
-                         <div class="relative w-full h-auto py-8 bg-slate-50/80 rounded-2xl border border-slate-100 flex items-center justify-evenly overflow-hidden backdrop-blur-sm">
-                            <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
+                    <div class="relative z-10 flex-grow flex items-center justify-center opacity-100" style="margin-top: 20px; margin-bottom: 20px;">
+                         <div class="relative w-full h-auto py-12 px-8 bg-slate-50/80 rounded-2xl border border-slate-100 flex flex-col items-center justify-center overflow-hidden backdrop-blur-sm">
+                            <div class="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:24px_24px] opacity-50"></div>
+                            <div class="absolute top-0 left-0 w-20 h-20 bg-violet-100/30 rounded-full blur-2xl"></div>
+                            <div class="absolute bottom-0 right-0 w-24 h-24 bg-indigo-100/30 rounded-full blur-2xl"></div>
                             
-                            <!-- Step 1: 创意 -->
-                            <div class="relative z-10 flex flex-col items-center gap-3 group">
-                                <div class="w-11 h-11 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center text-[#666666] group-hover:text-violet-500 group-hover:border-violet-200 transition-colors">
-                                    <i class="fa-regular fa-lightbulb text-lg"></i>
+                            <!-- Logo 行：三个logo水平对齐 -->
+                            <div class="relative z-10 flex items-center justify-center gap-8 mb-6">
+                                <!-- Step 1: 创意 -->
+                                <div class="relative group">
+                                    <div class="absolute -inset-1 bg-violet-100 rounded-xl blur opacity-0 group-hover:opacity-50 transition-opacity"></div>
+                                    <div class="w-14 h-14 bg-white rounded-xl shadow-md border-2 border-slate-200 flex items-center justify-center text-[#666666] group-hover:text-violet-500 group-hover:border-violet-300 transition-colors relative">
+                                        <i class="fa-regular fa-lightbulb text-2xl"></i>
+                                    </div>
                                 </div>
-                                <span class="text-[11px] font-bold text-[#333333]">创意/文案</span>
+
+                                <!-- Arrow 1 -->
+                                <div class="relative z-10 flex items-center">
+                                    <div class="w-12 h-[2px] bg-gradient-to-r from-slate-200 to-violet-200 relative overflow-hidden rounded-full">
+                                        <div class="absolute inset-0 bg-violet-400 w-1/2 -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
+                                    </div>
+                                    <i class="fa-solid fa-caret-right text-violet-300 -ml-1 text-sm"></i>
+                                </div>
+
+                                <!-- Step 2: AI处理 -->
+                                <div class="relative group">
+                                    <div class="absolute -inset-1 bg-violet-200 rounded-xl blur opacity-30"></div>
+                                    <div class="w-14 h-14 bg-white rounded-xl shadow-md border-2 border-violet-200 flex items-center justify-center text-violet-500 group-hover:scale-110 transition-transform duration-300 relative">
+                                        <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
+                                    </div>
+                                </div>
+
+                                <!-- Arrow 2 -->
+                                <div class="relative z-10 flex items-center">
+                                    <div class="w-12 h-[2px] bg-gradient-to-r from-violet-200 to-slate-300"></div>
+                                    <i class="fa-solid fa-caret-right text-slate-300 -ml-1 text-sm"></i>
+                                </div>
+
+                                <!-- Step 3: 成片 -->
+                                <div class="relative">
+                                    <div class="absolute -inset-2 bg-slate-900/20 rounded-xl blur-lg"></div>
+                                    <div class="w-14 h-14 bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl shadow-xl shadow-slate-200 flex items-center justify-center text-white relative overflow-hidden group">
+                                        <div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                                        <i class="fa-solid fa-circle-play text-2xl"></i>
+                                    </div>
+                                </div>
                             </div>
 
-                            <!-- Arrow 1 -->
-                            <div class="relative z-10 flex flex-col items-center px-1">
-                                <div class="w-8 h-[2px] bg-slate-200 relative overflow-hidden rounded-full">
-                                    <div class="absolute inset-0 bg-violet-400 w-1/2 -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
+                            <!-- 文字描述行：三个文字水平对齐 -->
+                            <div class="relative z-10 flex items-start justify-center gap-8">
+                                <!-- Step 1 文字 -->
+                                <div class="text-center flex-1">
+                                    <span class="text-xs font-bold text-[#333333] block whitespace-nowrap">创意/文案</span>
+                                    <span class="text-[10px] text-[#999999] mt-1 block whitespace-nowrap">输入想法</span>
                                 </div>
-                            </div>
 
-                            <!-- Step 2: AI处理 -->
-                            <div class="relative z-10 flex flex-col items-center gap-3 group">
-                                <div class="w-11 h-11 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center text-violet-500 group-hover:scale-110 transition-transform duration-300">
-                                    <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                                <!-- 空白占位 -->
+                                <div class="w-12"></div>
+
+                                <!-- Step 2 文字 -->
+                                <div class="text-center flex-1">
+                                    <span class="text-xs font-bold text-violet-600 bg-violet-50 px-3 py-1 rounded-full inline-block mb-1 whitespace-nowrap">AI 生成</span>
+                                    <span class="text-[10px] text-[#999999] block whitespace-nowrap">智能处理</span>
                                 </div>
-                                <span class="text-[11px] font-bold text-violet-600 bg-violet-50 px-2 py-0.5 rounded-full">AI 生成</span>
-                            </div>
 
-                            <!-- Arrow 2 -->
-                            <div class="relative z-10 flex flex-col items-center px-1">
-                                <div class="w-8 h-[2px] bg-slate-200"></div>
-                                <i class="fa-solid fa-caret-right text-slate-200 -mt-1.5 -mr-9"></i>
-                            </div>
+                                <!-- 空白占位 -->
+                                <div class="w-12"></div>
 
-                            <!-- Step 3: 成片 -->
-                            <div class="relative z-10 flex flex-col items-center gap-3">
-                                <div class="w-14 h-14 bg-gradient-to-br from-slate-900 to-slate-800 rounded-xl shadow-xl shadow-slate-200 flex items-center justify-center text-white relative overflow-hidden group">
-                                    <div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                                    <i class="fa-solid fa-circle-play text-2xl"></i>
+                                <!-- Step 3 文字 -->
+                                <div class="text-center flex-1">
+                                    <span class="text-xs font-bold text-[#000000] block whitespace-nowrap">专业成片</span>
+                                    <span class="text-[10px] text-[#999999] mt-1 block whitespace-nowrap">分钟级交付</span>
                                 </div>
-                                <span class="text-[11px] font-bold text-[#000000]">专业成片</span>
                             </div>
                          </div>
                     </div>
 
                     <!-- 底部标签 -->
-                    <div class="relative z-10 flex items-center gap-2 text-sm font-bold text-violet-600">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <span>人人皆可创作</span>
+                    <div class="relative z-10 mt-4">
+                        <div class="flex items-center gap-3 text-base font-bold text-violet-600 mb-3">
+                            <div class="w-8 h-8 bg-violet-50 rounded-lg flex items-center justify-center">
+                                <i class="fa-solid fa-wand-magic-sparkles text-violet-600"></i>
+                            </div>
+                            <span>人人皆可创作</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs text-[#666666]">
+                            <div class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-check-circle text-violet-500"></i>
+                                <span>无需专业技能</span>
+                            </div>
+                            <div class="w-1 h-1 bg-slate-300 rounded-full"></div>
+                            <div class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-check-circle text-violet-500"></i>
+                                <span>移动端操作</span>
+                            </div>
+                            <div class="w-1 h-1 bg-slate-300 rounded-full"></div>
+                            <div class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-check-circle text-violet-500"></i>
+                                <span>快速上手</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -870,14 +933,14 @@
                                 </div>
                                 <h3 class="text-2xl font-bold text-[#000000]">制作周期短</h3>
                             </div>
-                            <p class="text-[#333333] text-sm leading-relaxed font-light mb-6" style="font-size: 15px; font-weight: 400;">
+                            <p class="text-[#333333] text-sm leading-relaxed font-light mb-6" style="font-size: 16px; font-weight: 400;">
                                 视频 30 秒快速预览，分钟级完成成片交付，缩短制作周期，助力内容发布紧跟热点趋势。
                             </p>
                             <div class="flex gap-4">
-                                <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-xs font-medium text-[#333333] shadow-sm" style="border-radius: 10px;">
+                                <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-xs font-medium text-[#333333] shadow-sm" style="border-radius: 10px; font-size: 14px;">
                                     <span class="text-[#000000] font-bold">30s</span> 预览
                                 </div>
-                                <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-xs font-medium text-[#333333] shadow-sm">
+                                <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-sm font-medium text-[#333333] shadow-sm">
                                     <span class="text-[#000000] font-bold">1min</span> 交付
                                 </div>
                             </div>
