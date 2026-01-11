@@ -205,6 +205,66 @@
             footer .flex.gap-8 {
                 justify-content: center !important;
             }
+
+            /* --- 2026-01-11 移动端新增优化 --- */
+
+            /* 1. 短视频创作流程：手机视频居中 */
+            #workflow .lg\:hidden.relative.mb-6 {
+                display: flex;
+                justify-content: center;
+            }
+
+            /* 2. 短视频创作流程：文案容器适配 */
+            #workflow div[style*="height"], 
+            #workflow div[style*="width"] {
+                width: 100% !important;
+                height: auto !important;
+                min-height: auto !important;
+                max-width: none !important;
+            }
+
+            /* 3. 产品价值 - 制作门槛低：排版适配 */
+            #roi .lg\:col-span-5 .flex.gap-8 {
+                gap: 0.25rem !important; /* 进一步缩小间距 */
+            }
+            #roi .lg\:col-span-5 .w-14.h-14 {
+                width: 2.2rem !important;
+                height: 2.2rem !important;
+            }
+            #roi .lg\:col-span-5 i.text-2xl {
+                font-size: 1.1rem !important;
+            }
+            /* 箭头容器调整 */
+            #roi .lg\:col-span-5 .w-12.h-\[2px\] {
+                width: 0.8rem !important;
+            }
+            /* 文字对齐的空白占位调整 */
+            #roi .lg\:col-span-5 .w-12 {
+                width: 0.8rem !important;
+            }
+            /* 内部文字大小 */
+            #roi .lg\:col-span-5 .text-xs {
+                font-size: 11px !important;
+                white-space: nowrap; 
+            }
+            #roi .lg\:col-span-5 .text-\[10px\] {
+                font-size: 10px !important;
+            }
+
+            /* 4. 首屏：人人都能...与下一段（描述）间距缩小 */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > h1 {
+                margin-bottom: 8px !important;
+            }
+
+            /* 5. 首屏：手机屏幕上下间隔缩小 */
+            /* 手机上方的描述文字 margin-bottom */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > p {
+                margin-bottom: 12px !important;
+            }
+            /* 手机容器本身的 margin-bottom (手机下方是按钮) */
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 {
+                margin-bottom: 15px !important;
+            }
         }
 
         @keyframes shimmer {
