@@ -101,30 +101,56 @@
 
             /* 2. 缩小模块标题和内容的间距 */
             .mb-24, .mb-20, .mb-16, .mb-12 {
-                margin-bottom: 20px !important;
+                margin-bottom: 24px !important;
             }
             /* 针对核心功能列表间距 */
             .space-y-40 > :not([hidden]) ~ :not([hidden]) {
                 margin-top: 40px !important;
             }
+            .space-y-32 > :not([hidden]) ~ :not([hidden]) {
+                margin-top: 60px !important; /* 缩小工作流步骤间距 */
+            }
 
             /* 3. 指定标题变为紫色 */
-            /* 你的生产力，正在拖慢创意吗？ */
             section:not([id]) .h-section,
-            /* 核心功能 */
             #workflow .h-section,
-            /* 产品价值 */
             #roi h2,
-            /* 用户群体 */
             #audience .h-section,
-            /* 人人可生产 赋能组织升级 */
             #strategy .h-section {
                 color: #7c3aed !important;
+                font-size: 28px !important; /* 统一移动端标题大小 */
+            }
+
+            /* 4. 卡片内边距优化 */
+            .p-10 {
+                padding: 24px !important;
+            }
+            .glass-card {
+                padding: 24px !important;
+            }
+
+            /* 5. 工作流优化 */
+            #workflow .step-path {
+                left: 20px !important; /* 左侧对齐线 */
+            }
+            /* 工作流内容左侧留白 */
+            #workflow .grid > div:not(.absolute) {
+                padding-left: 48px !important;
+                text-align: left !important; /* 强制左对齐 */
+            }
+            #workflow .justify-end {
+                justify-content: flex-start !important;
+            }
+            #workflow .lg\:ml-auto {
+                margin-left: 0 !important;
+            }
+            #workflow h3 {
+                font-size: 20px !important;
             }
 
             /* 首屏右侧手机区域 margin-top 调整 */
             section.relative.pt-32 div.relative.mt-12[class*="lg:mt-0"] {
-                margin-top: 45px !important;
+                margin-top: 40px !important;
             }
 
             /* 移动端首屏：左侧内容居中 */
@@ -142,41 +168,35 @@
                 justify-content: center !important;
             }
 
-            /* 移动端首屏：底部数据（30s、100+、4K）居中 */
+            /* 移动端首屏：底部数据居中 */
             section.relative.pt-32 .grid.grid-cols-3 {
                 text-align: center !important;
             }
 
-            /* 移动端首屏：调整布局顺序 - 手机视频在描述文字和按钮之间 */
+            /* 移动端首屏：调整布局顺序 */
             section.relative.pt-32 .max-w-7xl.mx-auto {
                 display: flex !important;
                 flex-direction: column !important;
             }
-            /* text-left div 内部元素排序 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left {
                 order: 1;
                 display: contents !important;
             }
-            /* 标题和标签 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > div.inline-flex,
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > h1 {
                 order: 0;
             }
-            /* 描述文字 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > p {
                 order: 1;
             }
-            /* 手机视频插入到描述文字和按钮之间 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 {
                 order: 2;
                 margin-top: 0 !important;
                 margin-bottom: 30px !important;
             }
-            /* 立即体验按钮 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > .flex.flex-wrap {
                 order: 3;
             }
-            /* 底部数据 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > .mt-12 {
                 order: 4;
             }
@@ -187,15 +207,14 @@
             }
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > h1 {
                 margin-bottom: 15px !important;
+                font-size: 36px !important;
             }
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > p {
                 margin-bottom: 20px !important;
             }
-            /* 手机视频容器间距 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 {
                 margin-bottom: 25px !important;
             }
-            /* 底部数据区域间距 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > .mt-12 {
                 margin-top: 25px !important;
                 padding-top: 20px !important;
@@ -540,7 +559,7 @@
 
             <div class="space-y-32">
                 <div class="relative grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                    <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">01</div>
+                    <div class="absolute left-5 lg:left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm text-sm lg:text-base">01</div>
                     <div class="order-2 lg:order-1 lg:text-right">
                         <div class="flex items-center gap-4 mb-4 lg:justify-end">
                             <div class="inline-block p-2 bg-violet-50 rounded-xl text-violet-600">
@@ -578,7 +597,7 @@
                 </div>
 
                 <div class="relative grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                    <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">02</div>
+                    <div class="absolute left-5 lg:left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm text-sm lg:text-base">02</div>
                     <div class="relative hidden lg:block">
                         <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-full max-w-[320px] mx-auto">
                             <img src="image/section1&2/链接导出.avif" class="w-full aspect-[9/18] object-cover group-hover:scale-110 transition duration-700">
@@ -620,7 +639,7 @@
                 </div>
 
                 <div class="relative grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                    <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">03</div>
+                    <div class="absolute left-5 lg:left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm text-sm lg:text-base">03</div>
                     <div class="lg:order-2 relative hidden lg:block">
                         <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-full max-w-[320px] mx-auto">
                             <img src="image/section1&2/ai辅助.avif" class="w-full aspect-[9/18] object-cover group-hover:scale-110 transition duration-700">
@@ -662,7 +681,7 @@
                 </div>
 
                 <div class="relative grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                    <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">04</div>
+                    <div class="absolute left-5 lg:left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm text-sm lg:text-base">04</div>
                     <div class="relative hidden lg:block">
                         <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-full max-w-[320px] mx-auto">
                             <img src="image/section1&2/视频预览.avif" class="w-full aspect-[9/18] object-cover group-hover:scale-110 transition duration-700">
@@ -702,7 +721,7 @@
                 </div>
 
                 <div class="relative grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                    <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">05</div>
+                    <div class="absolute left-5 lg:left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm text-sm lg:text-base">05</div>
                     <div class="lg:order-2 relative hidden lg:block">
                         <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-full max-w-[320px] mx-auto">
                             <img src="image/section1&2/预览结果.avif" class="w-full aspect-[9/18] object-cover group-hover:scale-110 transition duration-700">
@@ -740,7 +759,7 @@
                 </div>
 
                 <div class="relative grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-                    <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">06</div>
+                    <div class="absolute left-5 lg:left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-slate-100 rounded-full flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm text-sm lg:text-base">06</div>
                     <div class="relative">
                         <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-full max-w-[320px] mx-auto">
                             <img src="image/section1&2/素材库.avif" class="w-full aspect-[9/18] object-cover group-hover:scale-110 transition duration-700">
