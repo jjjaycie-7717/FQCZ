@@ -936,12 +936,25 @@
                             <p class="text-[#333333] text-sm leading-relaxed font-light mb-6" style="font-size: 16px; font-weight: 400;">
                                 视频 30 秒快速预览，分钟级完成成片交付，缩短制作周期，助力内容发布紧跟热点趋势。
                             </p>
-                            <div class="flex gap-4">
-                                <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-xs font-medium text-[#333333] shadow-sm" style="border-radius: 10px; font-size: 14px;">
+                            <div class="flex flex-wrap gap-3 mb-4">
+                                <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-xs font-medium text-[#333333] shadow-sm flex items-center gap-2" style="border-radius: 10px; font-size: 14px;">
+                                    <i class="fa-solid fa-clock text-violet-500"></i>
                                     <span class="text-[#000000] font-bold">30s</span> 预览
                                 </div>
-                                <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-sm font-medium text-[#333333] shadow-sm">
+                                <div class="px-3 py-1.5 rounded-lg bg-white border border-slate-100 text-sm font-medium text-[#333333] shadow-sm flex items-center gap-2">
+                                    <i class="fa-solid fa-check-circle text-violet-500"></i>
                                     <span class="text-[#000000] font-bold">1min</span> 交付
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 text-xs text-[#666666]">
+                                <div class="flex items-center gap-1.5">
+                                    <div class="w-2 h-2 bg-violet-400 rounded-full animate-pulse"></div>
+                                    <span>实时预览</span>
+                                </div>
+                                <div class="w-1 h-1 bg-slate-300 rounded-full"></div>
+                                <div class="flex items-center gap-1.5">
+                                    <div class="w-2 h-2 bg-violet-400 rounded-full animate-pulse"></div>
+                                    <span>快速交付</span>
                                 </div>
                             </div>
                         </div>
@@ -964,35 +977,77 @@
                     
                     <!-- 卡片 3: 制作质量高 -->
                     <div class="group relative p-6 rounded-[2rem] bg-white border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
-                        <div class="w-10 h-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition-transform">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-violet-50/30 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+                        <div class="w-10 h-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition-transform relative z-10">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-[#000000] mb-2">制作质量高</h3>
-                        <p class="text-[13px] text-[#333333] leading-relaxed">
+                        <h3 class="text-lg font-bold text-[#000000] mb-2 relative z-10">制作质量高</h3>
+                        <p class="text-[13px] text-[#333333] leading-relaxed mb-4 relative z-10">
                             内置多场景模板，通过标准化模板与 AI 辅助视频创作，确保所有作品均维持在专业水准，减少个人能力差异，降低视频质量波动。
                         </p>
+                        <div class="mt-auto pt-3 border-t border-slate-100 relative z-10">
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-1.5 text-xs text-[#666666]">
+                                    <i class="fa-solid fa-layer-group text-violet-500"></i>
+                                    <span>100+ 模板</span>
+                                </div>
+                                <div class="w-1 h-1 bg-slate-300 rounded-full"></div>
+                                <div class="flex items-center gap-1.5 text-xs text-[#666666]">
+                                    <i class="fa-solid fa-star text-violet-500"></i>
+                                    <span>专业标准</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- 卡片 4: 制作成本低 -->
                     <div class="group relative p-6 rounded-[2rem] bg-white border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
-                        <div class="w-10 h-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition-transform">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-violet-50/30 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+                        <div class="w-10 h-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition-transform relative z-10">
                             <i class="fa-solid fa-people-arrows"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-[#000000] mb-2">制作成本低</h3>
-                        <p class="text-[13px] text-[#333333] leading-relaxed">
+                        <h3 class="text-lg font-bold text-[#000000] mb-2 relative z-10">制作成本低</h3>
+                        <p class="text-[13px] text-[#333333] leading-relaxed mb-4 relative z-10">
                             优化生产流程，减少对外部供应商及复杂后期团队的依赖，显著降低沟通与制作成本。
                         </p>
+                        <div class="mt-auto pt-3 border-t border-slate-100 relative z-10">
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-1.5 text-xs text-[#666666]">
+                                    <i class="fa-solid fa-arrow-trend-down text-violet-500"></i>
+                                    <span>成本降低</span>
+                                </div>
+                                <div class="w-1 h-1 bg-slate-300 rounded-full"></div>
+                                <div class="flex items-center gap-1.5 text-xs text-[#666666]">
+                                    <i class="fa-solid fa-users text-violet-500"></i>
+                                    <span>自主可控</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- 卡片 5: 制作效率高 -->
                     <div class="group relative p-6 rounded-[2rem] bg-white border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col">
-                        <div class="w-10 h-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition-transform">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-violet-50/30 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+                        <div class="w-10 h-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition-transform relative z-10">
                             <i class="fa-solid fa-arrow-trend-up"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-[#000000] mb-2">制作效率高</h3>
-                        <p class="text-[13px] text-[#333333] leading-relaxed">
+                        <h3 class="text-lg font-bold text-[#000000] mb-2 relative z-10">制作效率高</h3>
+                        <p class="text-[13px] text-[#333333] leading-relaxed mb-4 relative z-10">
                             内容资产化，通过作品沉淀与同款一键复用，让成功的经验可积累、可复制、可规模化扩张。
                         </p>
+                        <div class="mt-auto pt-3 border-t border-slate-100 relative z-10">
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-1.5 text-xs text-[#666666]">
+                                    <i class="fa-solid fa-repeat text-violet-500"></i>
+                                    <span>一键复用</span>
+                                </div>
+                                <div class="w-1 h-1 bg-slate-300 rounded-full"></div>
+                                <div class="flex items-center gap-1.5 text-xs text-[#666666]">
+                                    <i class="fa-solid fa-rocket text-violet-500"></i>
+                                    <span>规模化</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
