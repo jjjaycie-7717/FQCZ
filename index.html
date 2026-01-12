@@ -102,10 +102,12 @@
 
             #roi {
                 padding-top: 20px !important;
+                padding-bottom: 20px !important;
             }
 
             #roi > div.max-w-7xl.mx-auto.px-6.relative.z-10 {
                 margin-top: 20px !important;
+                margin-bottom: 20px !important;
             }
 
             #audience {
@@ -168,6 +170,11 @@
             /* 针对核心功能列表间距 */
             .space-y-40 > :not([hidden]) ~ :not([hidden]) {
                 margin-top: 40px !important;
+            }
+
+            /* --- 2026-01-11 用户群体(Audience)布局微调 --- */
+            #audience > div.max-w-7xl.mx-auto.px-6 {
+                margin-top: 20px !important; /* 整体下移一点 */
             }
 
             /* 3. 指定标题变为紫色 */
@@ -448,7 +455,7 @@
         }
     </style>
 </head>
-<body class="selection:bg-violet-100">
+<body class="selection:bg-violet-100 font-medium">
     <div class="site-bg"></div>
     <div class="bg-decoration">
         <div class="bg-grid"></div>
@@ -1020,8 +1027,8 @@
             <!-- 标题区 -->
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-5xl font-bold text-[#000000] tracking-tight mb-6" style="font-weight: 800; font-size: 36px;">产品价值</h2>
-                <p class="text-[#333333] text-lg font-medium leading-relaxed max-w-2xl mx-auto" style="font-size: 18px; font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;">
-                    构建从<span class="text-[#000000] font-medium">个人创作</span>到<span class="text-[#000000] font-medium" style="font-weight: 500;">组织资产</span>的完整价值闭环。
+                <p class="text-[#666666] text-lg font-medium leading-relaxed max-w-2xl mx-auto" style="font-size: 18px; font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;">
+                    构建从<span class="text-[#666666] font-medium">个人创作</span>到<span class="text-[#666666] font-medium" style="font-weight: 500;">组织资产</span>的完整价值闭环。
                 </p>
             </div>
 
@@ -1379,7 +1386,7 @@
     <section id="strategy" class="py-24 bg-slate-50/30" style="padding-top: 70px; padding-bottom: 70px;">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <h2 class="h-section mb-12" style="margin-bottom: 16px;">人人可生产 赋能组织升级</h2>
-            <p class="text-[#333333] text-sm mb-10 font-light max-w-3xl mx-auto leading-relaxed" style="font-size: 18px; font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif; font-weight: 400;">蜂桥创作通过"手机 + AI"的短视频生产力变革，推动组织在智能化、视频化、移动化方向的系统升级。</p>
+            <p class="text-[#666666] text-sm mb-10 font-light max-w-3xl mx-auto leading-relaxed" style="font-size: 18px; font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif; font-weight: 500;">蜂桥创作通过"手机 + AI"的短视频生产力变革，推动组织在智能化、视频化、移动化方向的系统升级。</p>
             <div class="grid lg:grid-cols-3 gap-6 text-left">
                 <div class="glass-card p-10 rounded-[2.5rem] flex items-start gap-6">
                     <span class="text-4xl font-bold text-violet-100 italic">01</span>
@@ -1415,7 +1422,7 @@
         
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
             <h2 class="h-section mb-6 text-[#000000]">准备好升级您的短视频生产力了吗？</h2>
-            <p class="text-[#666666] text-lg md:text-xl font-light mb-12 leading-relaxed">每一分钟，都有数万条视频在蜂桥创作中诞生。</p>
+            <p class="text-[#666666] text-lg md:text-xl font-medium mb-12 leading-relaxed">每一分钟，都有数万条视频在蜂桥创作中诞生。</p>
             <div class="flex justify-center items-center">
                 <div class="relative group inline-block">
                     <a id="mobile-start-create-btn" href="#" class="btn-premium text-white px-10 py-5 rounded-2xl font-bold text-base shadow-xl text-center inline-block">立即开启创作</a>
