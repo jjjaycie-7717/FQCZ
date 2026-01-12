@@ -88,6 +88,12 @@
 
         /* 移动端优化：间距调整与标题颜色 */
         @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden !important;
+                overscroll-behavior-x: none !important;
+                touch-action: pan-y !important;
+            }
+
             /* 1. 缩小每个模块间的间距 */
             section {
                 padding-top: 40px !important;
@@ -284,7 +290,8 @@
             /* 2. 6个悬浮元素位置调整 (针对移动端) */
             /* 容器 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 {
-                overflow: visible !important; /* 允许悬浮元素溢出一点 */
+                overflow-x: hidden !important;
+                overflow-y: visible !important;
             }
             /* 选中所有悬浮卡片 (根据共同特征: absolute, glass-card, rounded-2xl) */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div.absolute.glass-card {
