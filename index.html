@@ -100,9 +100,55 @@
                 padding-bottom: 40px !important;
             }
 
+            #roi {
+                padding-top: 20px !important;
+            }
+
+            #roi > div.max-w-7xl.mx-auto.px-6.relative.z-10 {
+                margin-top: 20px !important;
+            }
+
+            #audience {
+                padding-top: 0px !important;
+            }
+
+            #audience .group.md\:px-6.pt-12.md\:pt-0 {
+                padding-top: 14px !important;
+            }
+
+            #audience .mb-10.text-center.md\:text-left {
+                margin-bottom: 12px !important;
+            }
+
+            #audience .mb-10.text-center.md\:text-left {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            #audience .mb-10.text-center.md\:text-left > i {
+                margin-bottom: 0px !important;
+                margin-right: 12px !important;
+                font-size: 1.5rem !important;
+            }
+
+            #audience .mb-10.text-center.md\:text-left > h3 {
+                margin-bottom: 0px !important;
+            }
+
+            #audience .mb-10.text-center.md\:text-left > p {
+                flex-basis: 100% !important;
+                margin-top: 6px !important;
+            }
+
+            #audience ul.space-y-8 > :not([hidden]) ~ :not([hidden]) {
+                margin-top: 10px !important;
+            }
+
             /* 首屏单独处理：避免被固定导航遮挡 */
             body > section:first-of-type {
-                padding-top: calc(64px + env(safe-area-inset-top, 0px) + 24px) !important;
+                padding-top: calc(64px + env(safe-area-inset-top, 0px) + 44px) !important;
             }
 
             /* 2. 缩小模块标题和内容的间距 */
@@ -410,8 +456,8 @@
             </div>
             
             <div class="hidden md:block relative group">
-                <button class="bg-slate-900 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-violet-600 transition" style="font-size: 14px;">立即体验</button>
-                <div class="absolute top-full right-0 mt-2 p-3 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 border border-slate-100 w-40 text-center">
+                <button id="nav-experience-btn" class="bg-slate-900 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-violet-600 transition" style="font-size: 14px;">立即体验</button>
+                <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 p-3 bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50 border border-slate-100 w-40 text-center">
                     <img src="image/public/xcx code.jpeg" alt="扫码体验" class="w-full h-auto object-contain mb-2 rounded-lg">
                     <p class="text-xs text-[#333333] font-medium">微信扫码体验</p>
                 </div>
@@ -1227,15 +1273,17 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-24">
                 <h2 class="h-section mb-4" style="font-size: 36px;">用户群体</h2>
-                <p class="text-[#666666] text-sm font-medium" style="font-size: 18px; font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;">提升组织效能，助力个人创作。</p>
+                <p class="text-[#666666] text-lg font-medium">构建从个人创作到组织资产的完整价值闭环。</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24 divide-y md:divide-y-0 md:divide-x divide-slate-100">
                 <!-- 1. 媒体与政府 -->
                 <div class="group md:px-6 pt-12 md:pt-0">
                     <div class="mb-10 text-center md:text-left">
-                        <i class="fa-solid fa-bullhorn text-4xl text-violet-600 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
-                        <h3 class="text-2xl font-bold text-[#000000] mb-3">媒体与政府宣传</h3>
+                        <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
+                            <i class="fa-solid fa-bullhorn text-4xl text-violet-600 group-hover:scale-110 transition-transform duration-300"></i>
+                            <h3 class="text-2xl font-bold text-[#000000]">媒体与政府宣传</h3>
+                        </div>
                         <p class="text-xs font-bold text-violet-500 uppercase tracking-widest">主流媒体 / 党政机构</p>
                     </div>
                     <ul class="space-y-8">
@@ -1257,8 +1305,10 @@
                 <!-- 2. 央国企 -->
                 <div class="group md:px-6 pt-12 md:pt-0">
                     <div class="mb-10 text-center md:text-left">
-                        <i class="fa-solid fa-building text-4xl text-blue-600 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
-                        <h3 class="text-2xl font-bold text-[#000000] mb-3">央国企与社会团体</h3>
+                        <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
+                            <i class="fa-solid fa-building text-4xl text-blue-600 group-hover:scale-110 transition-transform duration-300"></i>
+                            <h3 class="text-2xl font-bold text-[#000000]">央国企与社会团体</h3>
+                        </div>
                         <p class="text-xs font-bold text-blue-500 uppercase tracking-widest">宣传部 / 行业协会</p>
                     </div>
                     <ul class="space-y-8">
@@ -1280,8 +1330,10 @@
                 <!-- 3. 内容创作专业人士 -->
                 <div class="group md:px-6 pt-12 md:pt-0">
                     <div class="mb-10 text-center md:text-left">
-                        <i class="fa-solid fa-pen-nib text-4xl text-rose-500 mb-6 group-hover:scale-110 transition-transform duration-300"></i>
-                        <h3 class="text-2xl font-bold text-[#000000] mb-3">内容创作专业人士</h3>
+                        <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
+                            <i class="fa-solid fa-pen-nib text-4xl text-rose-500 group-hover:scale-110 transition-transform duration-300"></i>
+                            <h3 class="text-2xl font-bold text-[#000000]">内容创作专业人士</h3>
+                        </div>
                         <p class="text-xs font-bold text-rose-500 uppercase tracking-widest">记者 / 编辑 / 自媒体</p>
                     </div>
                     <ul class="space-y-8">
@@ -1409,6 +1461,60 @@
         const WEAPP_DEEPLINK = 'weixin://dl/business/?appid=wxca7ef57e61db7787&path=pages/recommend/recommend';
         const isMobileViewport = () => window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
 
+        const openScheme = (schemeUrl) => {
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = schemeUrl;
+            document.body.appendChild(iframe);
+            window.setTimeout(() => {
+                try {
+                    document.body.removeChild(iframe);
+                } catch (_) {}
+            }, 1200);
+        };
+
+        const wakePcWeChatMiniProgram = () => {
+            const startAt = Date.now();
+            let fallbackTimer = null;
+
+            const cleanup = () => {
+                if (fallbackTimer) {
+                    window.clearTimeout(fallbackTimer);
+                    fallbackTimer = null;
+                }
+                window.removeEventListener('blur', onHide);
+                window.removeEventListener('pagehide', onHide);
+                document.removeEventListener('visibilitychange', onVisibilityChange);
+            };
+
+            const onHide = () => cleanup();
+            const onVisibilityChange = () => {
+                if (document.visibilityState === 'hidden') cleanup();
+            };
+
+            window.addEventListener('blur', onHide);
+            window.addEventListener('pagehide', onHide);
+            document.addEventListener('visibilitychange', onVisibilityChange);
+
+            openScheme(WEAPP_DEEPLINK);
+
+            fallbackTimer = window.setTimeout(() => {
+                const stillHere = document.visibilityState === 'visible' && (Date.now() - startAt) < 2500;
+                if (stillHere) openScheme('weixin://');
+                cleanup();
+            }, 1500);
+        };
+
+        const bindPcWeChatWake = (el) => {
+            if (!el) return;
+            el.addEventListener('click', (e) => {
+                if (isMobileViewport()) return; // 不影响移动端逻辑
+                e.preventDefault();
+                e.stopPropagation();
+                wakePcWeChatMiniProgram();
+            });
+        };
+
         const bindMobileWeappJump = (el) => {
             if (!el) return;
             el.addEventListener('click', (e) => {
@@ -1422,7 +1528,10 @@
         bindMobileWeappJump(document.getElementById('mobile-experience-btn'));
         bindMobileWeappJump(document.getElementById('hero-experience-btn'));
         bindMobileWeappJump(document.getElementById('mobile-start-create-btn'));
+
+        bindPcWeChatWake(document.getElementById('nav-experience-btn'));
+        bindPcWeChatWake(document.getElementById('hero-experience-btn'));
+        bindPcWeChatWake(document.getElementById('mobile-start-create-btn'));
     </script>
 </body>
-</html>
 </html>
