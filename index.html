@@ -89,7 +89,7 @@
         /* 移动端优化：间距调整与标题颜色 */
         @media (max-width: 768px) {
             html, body {
-                overflow-x: hidden !important;
+                overflow-x: visible !important;
                 overscroll-behavior-x: none !important;
                 touch-action: pan-y !important;
             }
@@ -110,6 +110,11 @@
 
             #audience {
                 padding-top: 0px !important;
+                margin-top: -24px !important;
+            }
+
+            section#audience {
+                padding-top: 46px !important;
             }
 
             #audience .group.md\:px-6.pt-12.md\:pt-0 {
@@ -272,6 +277,14 @@
                 justify-content: center;
             }
 
+            #workflow div.max-w-\[320px\] {
+                max-width: 280px !important;
+            }
+
+            section.relative.pt-32 .glass-card.bg-slate-900 {
+                max-width: 260px !important;
+            }
+
             /* 2. 短视频创作流程：文案容器适配 */
             #workflow div[style*="height"], 
             #workflow div[style*="width"] {
@@ -332,57 +345,60 @@
                 width: 0px !important;
                 background: transparent !important;
             }
-
             /* 2. 6个悬浮元素位置调整 (针对移动端) */
+            section.relative.pt-32.pb-20 {
+                overflow: visible !important;
+            }
             /* 容器 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 {
-                overflow-x: hidden !important;
+                overflow-x: visible !important;
                 overflow-y: visible !important;
             }
             /* 选中所有悬浮卡片 (根据共同特征: absolute, glass-card, rounded-2xl) */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div.absolute.glass-card {
-                transform: scale(0.7) !important; /* 整体缩小 */
-                padding: 8px !important;
-                max-width: 140px !important;
-                z-index: 30 !important;
+                transform: scale(0.92) !important;
+                padding: 10px !important;
+                max-width: 170px !important;
+                z-index: 40 !important;
             }
             /* 图标大小适配 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div.absolute.glass-card .w-8 {
-                width: 24px !important;
-                height: 24px !important;
-                font-size: 14px !important;
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 16px !important;
             }
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div.absolute.glass-card .text-xs {
-                font-size: 10px !important;
+                font-size: 12px !important;
             }
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div.absolute.glass-card .text-\[10px\] {
-                display: none !important; /* 隐藏小字描述，减少干扰 */
+                display: block !important;
+                font-size: 11px !important;
             }
             
             /* 重新定位 6个元素 */
             /* 左上 - AI智能配音 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(3) {
-                top: 5% !important; left: -10px !important; right: auto !important;
+                top: 5% !important; left: -48px !important; right: auto !important;
             }
             /* 左中 - AI文案优化 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(4) {
-                top: 40% !important; left: -15px !important; right: auto !important;
+                top: 40% !important; left: -58px !important; right: auto !important;
             }
             /* 左下 - 智能编排 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(5) {
-                bottom: 15% !important; top: auto !important; left: -5px !important; right: auto !important;
+                bottom: 15% !important; top: auto !important; left: -46px !important; right: auto !important;
             }
             /* 右上 - 30s预览 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(6) {
-                top: 10% !important; right: -10px !important; left: auto !important;
+                top: 10% !important; right: -48px !important; left: auto !important;
             }
             /* 右中 - 自动字幕 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(7) {
-                top: 45% !important; right: -15px !important; left: auto !important;
+                top: 45% !important; right: -58px !important; left: auto !important;
             }
             /* 右下 - 一键分享 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 > div:nth-child(8) {
-                bottom: 20% !important; top: auto !important; right: -5px !important; left: auto !important;
+                bottom: 20% !important; top: auto !important; right: -46px !important; left: auto !important;
             }
 
             /* 3. 缩小首屏文案间距 */
