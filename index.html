@@ -132,6 +132,12 @@
                 text-align: center !important;
             }
 
+            section.relative.pt-32 > div.max-w-7xl.mx-auto.px-6.grid.lg\:grid-cols-2.gap-12.items-center {
+                gap: 24px !important;
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
             /* 移动端首屏：立即体验按钮容器居中 */
             section.relative.pt-32 .flex.flex-wrap.gap-4 {
                 justify-content: center !important;
@@ -197,8 +203,8 @@
             }
             /* 底部数据区域间距 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > .mt-12 {
-                margin-top: 25px !important;
-                padding-top: 20px !important;
+                margin-top: 5px !important;
+                padding-top: 12px !important;
             }
 
             /* 移动端底部：两个二维码居中 */
@@ -259,7 +265,7 @@
             /* 5. 首屏：手机屏幕上下间隔缩小 */
             /* 手机上方的描述文字 margin-bottom */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > p {
-                margin-bottom: 8px !important;
+                margin-bottom: 6px !important;
             }
             /* 手机容器本身的 margin-bottom (手机下方是按钮) */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.relative.mt-12 {
@@ -328,11 +334,16 @@
 
             /* 3. 缩小首屏文案间距 */
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > h1 {
-                margin-bottom: 5px !important;
+                margin-bottom: 0px !important;
                 line-height: 1.1 !important;
             }
             section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > h1 span {
-                margin-top: 5px !important;
+                margin-top: 0px !important;
+                font-size: 30px !important;
+            }
+
+            section.relative.pt-32 .max-w-7xl.mx-auto > div.text-left > p {
+                margin-top: -8px !important;
             }
             
             /* 4. 缩小短视频创作流程中的标题内容间距 */
@@ -886,7 +897,7 @@
 
                 <div class="relative grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                     <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-20 w-12 h-12 bg-white border-2 border-slate-100 rounded-full hidden lg:flex items-center justify-center z-10 font-bold text-violet-600 shadow-sm">06</div>
-                    <div class="relative">
+                    <div class="relative hidden lg:block">
                         <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-full max-w-[320px] mx-auto">
                             <img src="image/section1&2/素材库.avif" class="w-full aspect-[9/18] object-cover group-hover:scale-110 transition duration-700">
                         </div>
@@ -899,6 +910,11 @@
                             <h3 class="text-2xl font-bold text-[#000000]">视频资源数字化管理</h3>
                         </div>
                         <p class="text-[#333333] text-base leading-normal font-light mb-6 max-w-md">建立企业内容资产中心，挖掘视频长期价值。</p>
+                        <div class="lg:hidden relative mb-6">
+                            <div class="ring-8 ring-slate-50 rounded-[2.5rem] shadow-2xl overflow-hidden group w-full max-w-[320px] mx-auto">
+                                <img src="image/section1&2/素材库.avif" class="w-full aspect-[9/18] object-cover group-hover:scale-110 transition duration-700">
+                            </div>
+                        </div>
                         <div class="flex flex-col gap-3">
                             <div class="p-4 bg-slate-50/50 border border-slate-100 rounded-2xl hover:shadow-sm transition-all duration-300" style="height: 102px;">
                                 <h4 class="text-[#000000] font-bold mb-1.5 text-sm">集中化管理</h4>
